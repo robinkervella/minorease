@@ -24,6 +24,9 @@ public class Parent {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
+    @OneToMany(mappedBy = "parent")
+    private List<Rating> ratings;
+
     public int getId() {
         return id;
     }
