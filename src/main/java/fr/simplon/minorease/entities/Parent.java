@@ -17,7 +17,7 @@ public class Parent {
     private int code_postal;
     private String username;
 
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(mappedBy = "parent")
     private List<Reservation> reservations;
 
     @ManyToOne

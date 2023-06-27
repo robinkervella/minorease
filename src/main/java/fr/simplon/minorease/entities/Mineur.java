@@ -57,5 +57,5 @@ public class Mineur {
         this.parent = parent;
     }
 
-    // Constructeurs, getters et setters
+
 }

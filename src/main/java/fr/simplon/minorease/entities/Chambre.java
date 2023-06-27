@@ -60,5 +60,5 @@ public class Chambre {
         this.reservation = reservation;
     }
 
-    // Constructeurs, getters et setters
+
 }

@@ -12,7 +12,7 @@ public class Reservation {
     private String date_fin;
 
     @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
+    @JoinColumn(name = "parent_id")
     private Parent parent;
 
     @ManyToOne
