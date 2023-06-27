@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscription</title>
+
+</head>
+
+<h1>Minorease</h1>
+</header>
+
+<body>
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">Inscription</h2>
+
+        <form th:object="${user}" th:action="@{/inscription}" method="post">
+
+            <div class="alert alert-danger" th:if="${#fields.hasGlobalErrors()}">
+                <p th:each="error : ${#fields.globalErrors()}" th:text="${error}"></p>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="nom">Nom :</label>
+                <input class="form-control" id="nom" type="text" name="nom" th:field="*{nom}">
+                <span class="text-danger" th:errors="*{nom}">Error</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="prenom">Prenom :</label>
+                <input class="form-control" id="prenom" type="text" name="prenom" th:field="*{prenom}">
+                <span class="text-danger" th:errors="*{prenom}">Error</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="date_naissance">Date de naissance :</label>
+                <input class="form-control" id="date_naissance" type="date" name="date_naissance"
+                       th:field="*{date_naissance}">
+                <span class="text-danger" th:errors="*{date_naissance}">Error</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="mail">Adresse mail :</label>
+                <input class="form-control" id="mail" type="text" name="mail" th:field="*{mail}">
+                <span class="text-danger" th:errors="*{mail}">Error</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="num_portable">Numéro de portable :</label>
+                <input class="form-control" id="num_portable" type="text" name="num_portable"
+                       th:field="*{num_portable}">
+                <span class="text-danger" th:errors="*{num_portable}">Error</span>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label" for="password">Mot de passe :</label>
+                <input class="form-control" id="password" type="password" name="password" th:field="*{password}">
+                <span class="text-danger" th:errors="*{password}">Error</span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="confirmPassword">Confirmation :</label>
+                <input class="form-control" id="confirmPassword" type="password" name="confirmPassword"
+                       th:field="*{confirmPassword}">
+                <span class="text-danger" th:errors="*{confirmPassword}">Error</span>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-secondary" onclick="window.location='/'">Annuler</button>
+                <button type="submit" class="btn btn-primary">Créer</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
