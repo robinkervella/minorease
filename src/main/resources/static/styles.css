@@ -1,0 +1,14 @@
+.bg-light {
+    background-color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: black;
+}
+
+.navbar-logo {
+    width: 150px;
+    height: 70px;
+    background: url(".png") no-repeat center center;
+    background-size: contain;
+}
