@@ -27,6 +27,9 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel")
     private List<Chambre> chambres;
 
+    @OneToMany(mappedBy = "hotel")
+    private List<Rating> ratings;
+
 
     public int getId() {
         return id;
