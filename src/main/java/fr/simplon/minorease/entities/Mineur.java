@@ -4,7 +4,7 @@ package fr.simplon.minorease.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Mineur")
+@Table(name = "mineur")
 public class Mineur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

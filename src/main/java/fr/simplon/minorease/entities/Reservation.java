@@ -3,7 +3,7 @@ package fr.simplon.minorease.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Reservation")
+@Table(name = "reservation")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

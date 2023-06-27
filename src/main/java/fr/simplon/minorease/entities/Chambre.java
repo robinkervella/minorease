@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Chambre")
+@Table(name = "chambre")
 public class Chambre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
