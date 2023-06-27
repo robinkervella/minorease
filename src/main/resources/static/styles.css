@@ -9,6 +9,6 @@
 .navbar-logo {
     width: 150px;
     height: 70px;
-    background: url(".png") no-repeat center center;
+    background: url("logo_minorease.png") no-repeat center center;
     background-size: contain;
 }
