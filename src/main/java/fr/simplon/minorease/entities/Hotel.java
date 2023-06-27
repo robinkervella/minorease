@@ -25,6 +25,9 @@ public class Hotel {
     private List<Parent> parent;
 
     @OneToMany(mappedBy = "hotel")
+    private List<Image> images;
+
+    @OneToMany(mappedBy = "hotel")
     private List<Chambre> chambres;
 
     @OneToMany(mappedBy = "hotel")
