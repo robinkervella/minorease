@@ -5,10 +5,12 @@ import fr.simplon.minorease.repositories.HotelRepository;
 import fr.simplon.minorease.services.RechercheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,8 +24,9 @@ public class HotelController {
     private HotelRepository hotelRepository;
 
     @GetMapping(path = "/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}")
-    public String rechercherUnHotel(@PathVariable String ville, @PathVariable LocalDate dateDebut, @PathVariable LocalDate dateFin, @PathVariable int nbPersonne, Model model) {
+    public String rechercherUnHotel(@RequestParam("ville") String ville, @RequestParam("dateDebut") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateDebut, @RequestParam("dateFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFin, @RequestParam("nbPersonne") int nbPersonne, Model model) {
         List<Hotel> allHotels = hotelRepository.findAll();
+
         LocalDateTime localDateTimeDebut = LocalDateTime.of(dateDebut, LocalTime.MIDNIGHT);
         LocalDateTime localDateTimeFin = LocalDateTime.of(dateFin, LocalTime.MIDNIGHT);
 
@@ -33,7 +36,7 @@ public class HotelController {
     }
 
     @GetMapping(path = "/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}/{prixMax}/{prixMini}")
-    public String rechercherUnHotelParPrix(@PathVariable String ville, @PathVariable LocalDate dateDebut, @PathVariable LocalDate dateFin, int nbPersonne,double prixMax,double prixMini, Model model) {
+    public String rechercherUnHotelParPrix(@RequestParam("ville") String ville, @RequestParam("dateDebut") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateDebut, @RequestParam("dateFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFin, @RequestParam("nbPersonne") int nbPersonne,@RequestParam("prixMini")double prixMini,@RequestParam("prixMax")double prixMax, Model model) {
         List<Hotel> allHotels = hotelRepository.findAll();
         LocalDateTime localDateTimeDebut = LocalDateTime.of(dateDebut, LocalTime.MIDNIGHT);
         LocalDateTime localDateTimeFin = LocalDateTime.of(dateFin, LocalTime.MIDNIGHT);
