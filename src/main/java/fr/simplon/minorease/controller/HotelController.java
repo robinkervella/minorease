@@ -25,4 +25,13 @@ public class HotelController {
         model.addAttribute("hotel", listeARetourner);
         return "hotels";
     }
+
+    @GetMapping(path = "/rechercherUnHotel/parPrix")
+    public String rechercherUnHotelParPrix(@PathVariable String ville, @PathVariable LocalDateTime dateDebut, @PathVariable LocalDateTime dateFin, int nbPersonne,double prixMax,double prixMini, Model model) {
+        List<Hotel> allHotels = hotelRepository.findAll();
+        List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels,ville,dateDebut,dateFin,nbPersonne);
+        List<Hotel> listeTriéAvecPrix = rechercheService.trouverLesHotelsDansLaFourchetteDePrix(listeARetourner,prixMini,prixMax);
+        model.addAttribute("hotel", listeTriéAvecPrix);
+        return "hotels";
+    }
 }
