@@ -24,12 +24,21 @@ public class HotelController {
     private HotelRepository hotelRepository;
 
     @GetMapping(path = "/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}")
-    public String rechercherUnHotel(@RequestParam("ville") String ville, @RequestParam("dateDebut") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateDebut, @RequestParam("dateFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFin, @RequestParam("nbPersonne") int nbPersonne, Model model) {
+    public String rechercherUnHotel(
+            @RequestParam("dateDebut") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateDebut,
+            @RequestParam("dateFin") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateFin,
+            @RequestParam("nbPersonne") int nbPersonne,
+            @RequestParam("ville") String ville,  Model model) {
+
         List<Hotel> allHotels = hotelRepository.findAll();
 
         LocalDateTime localDateTimeDebut = LocalDateTime.of(dateDebut, LocalTime.MIDNIGHT);
         LocalDateTime localDateTimeFin = LocalDateTime.of(dateFin, LocalTime.MIDNIGHT);
 
+        System.out.println("Ville: " + ville);
+        System.out.println("Date de début: " + dateDebut);
+        System.out.println("Date de fin: " + dateFin);
+        System.out.println("Nombre de personnes: " + nbPersonne);
         List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels,ville,localDateTimeDebut,localDateTimeFin,nbPersonne);
         model.addAttribute("hotel", listeARetourner);
         return "hotels";
