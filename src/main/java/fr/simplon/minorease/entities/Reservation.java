@@ -13,6 +13,11 @@ public class Reservation {
     private LocalDateTime date_debut;
     private LocalDateTime date_fin;
 
+    public Reservation(LocalDateTime of, LocalDateTime of1) {
+        this.date_debut = of;
+        this.date_fin = of1;
+    }
+
     public LocalDateTime getDate_debut() {
         return date_debut;
     }

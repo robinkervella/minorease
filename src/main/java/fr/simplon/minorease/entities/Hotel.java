@@ -15,6 +15,33 @@ public class Hotel {
     private String description;
     private String adresse;
     private String ville;
+
+    private String pays;
+
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
     private int code_postal;
     private String url;
     private double latitude;
