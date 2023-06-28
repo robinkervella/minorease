@@ -6,7 +6,7 @@ import fr.simplon.minorease.entities.Hotel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RechercheServices {
+public class RechercheService {
 
     public List<Hotel> getHotelByFourchette(List<Hotel> allhotels, double prixMini, double prixMax) {
         List<Hotel> hotelsToReturn = new ArrayList<>();
