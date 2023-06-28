@@ -2,14 +2,32 @@ package fr.simplon.minorease.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "reservation")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String date_debut;
-    private String date_fin;
+    private LocalDateTime date_debut;
+    private LocalDateTime date_fin;
+
+    public LocalDateTime getDate_debut() {
+        return date_debut;
+    }
+
+    public void setDate_debut(LocalDateTime date_debut) {
+        this.date_debut = date_debut;
+    }
+
+    public LocalDateTime getDate_fin() {
+        return date_fin;
+    }
+
+    public void setDate_fin(LocalDateTime date_fin) {
+        this.date_fin = date_fin;
+    }
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
@@ -25,22 +43,6 @@ public class Reservation {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDate_debut() {
-        return date_debut;
-    }
-
-    public void setDate_debut(String date_debut) {
-        this.date_debut = date_debut;
-    }
-
-    public String getDate_fin() {
-        return date_fin;
-    }
-
-    public void setDate_fin(String date_fin) {
-        this.date_fin = date_fin;
     }
 
     public Parent getParent() {
