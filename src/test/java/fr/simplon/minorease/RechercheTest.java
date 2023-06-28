@@ -60,7 +60,7 @@ public class RechercheTest {
 
     @Test
     void testGetHotelsDisponibles() {
-        List<Hotel> result = rechercheService.getHotelsDisponibles(allHotels, dateDebut, dateFin);
+        List<Hotel> result = rechercheService.trouverHotelsDisponibles(allHotels, dateDebut, dateFin);
         assertNotNull(result);
         assertEquals(1, result.size());
     }
