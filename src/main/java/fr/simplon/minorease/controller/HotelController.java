@@ -18,15 +18,15 @@ public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
 
-    @GetMapping(path = "/rechercherUnHotel")
-    public String rechercherUnHotel(@PathVariable String ville, @PathVariable LocalDateTime dateDebut, @PathVariable LocalDateTime dateFin, int nbPersonne, Model model) {
+    @GetMapping(path = "/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}")
+    public String rechercherUnHotel(@PathVariable String ville, @PathVariable LocalDateTime dateDebut, @PathVariable LocalDateTime dateFin, @PathVariable int nbPersonne, Model model) {
         List<Hotel> allHotels = hotelRepository.findAll();
         List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels,ville,dateDebut,dateFin,nbPersonne);
         model.addAttribute("hotel", listeARetourner);
         return "hotels";
     }
 
-    @GetMapping(path = "/rechercherUnHotel/parPrix")
+    @GetMapping(path = "/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}/{prixMax}/{prixMini}")
     public String rechercherUnHotelParPrix(@PathVariable String ville, @PathVariable LocalDateTime dateDebut, @PathVariable LocalDateTime dateFin, int nbPersonne,double prixMax,double prixMini, Model model) {
         List<Hotel> allHotels = hotelRepository.findAll();
         List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels,ville,dateDebut,dateFin,nbPersonne);
