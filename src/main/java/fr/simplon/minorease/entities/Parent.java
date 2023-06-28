@@ -24,6 +24,14 @@ public class Parent {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
     @OneToMany(mappedBy = "parent")
     private List<Rating> ratings;
 
