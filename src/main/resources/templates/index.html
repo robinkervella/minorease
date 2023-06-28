@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <title>Accueil</title>
     <th:block th:replace="~{fragments/fragment-meta :: html-header}"></th:block>
+    <link rel="stylesheet" href="/styleIndex.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
 </head>
-<header th:replace="~{fragments/fragment-header :: header}"></header>
 
 <body>
-<header>
+
+<header th:replace="~{fragments/fragment-header :: header}">
 </header>
+
 <main>
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Voyagez en toute confiance avec MINOREASE</h1>
-            <p class="lead">Simplifiez la réservation d'hôtels pour les mineurs </p>
-        </div>
+    <div class="welcome">
+        <h1 class="welcome-title">Voyagez en toute confiance avec MINOREASE</h1>
+        <p class="welcome-text">Application de réservation d'hôtels pour les 16 / 17 ans </p>
+    </div>
 
-        <div class="research">
-            <h1>Recherche d'hôtel</h1>
-            <form class="form-inline">
-                <div class="form-group mr-sm-2">
-                    <label for="dateDebut" class="mr-2">Date de début :</label>
-                    <input type="date" class="form-control" id="dateDebut" name="dateDebut">
-                </div>
-                <div class="form-group mr-sm-2">
-                    <label for="dateFin" class="mr-2">Date de fin :</label>
-                    <input type="date" class="form-control" id="dateFin" name="dateFin">
-                </div>
-                <div class="form-group mr-sm-2">
-                    <label for="ville" class="mr-2">Ville :</label>
-                    <input type="text" class="form-control" id="ville" name="ville">
-                </div>
-                <button type="submit" class="btn btn-primary">Rechercher</button>
-            </form>
-        </div>
+    <div class="research">
+        <h2>Pour chercher un hôtel, c'est par ici <img src="fleche.PNG" class="fleche"/></h2>
+        <form class="research-form">
+            <div class="filters">
+                <label for="dateDebut">Arrivée ?</label>
+                <input type="date" id="dateDebut" name="dateDebut" placeholder="Date de début">
+            </div>
+            <div class="filters">
+                <label for="dateFin">Départ ?</label>
+                <input type="date" id="dateFin" name="dateFin">
+            </div>
+            <div class="filters">
+                <label for="ville">Où ?</label>
+                <input type="text" id="ville" name="ville" placeholder="ex. : Paris">
+            </div>
+            <button type="submit" class="research-button">Go</button>
+        </form>
+    </div>
 
-        <div class="mt-5">
-            <p>Voyagez en toute confiance avec MINOREASE : Simplifiez la réservation d'hôtels pour les mineurs </p>
+    <div class="description">
+        <div class="description-zone">
+            <h2>Quels sont les avantages de MINOREASE ?</h2>
+            <p>Minorease permet aux jeunes de 16 et 17 ans de gagner en autonomie en leur permettant de voyager dans un contexte sécurisé. </p>
+        </div>
+        <div class="description-zone">
+            <p>Large choix d'hôtels qui accueillent les jeunes de 16 et 17 ans</p>
+            <p>Gestion sécurisée des documents d'identité</p>
+            <p>Interface simple et ludique pour le suivi de vos réservations</p>
         </div>
     </div>
+
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+
 </body>
+
 </html>
