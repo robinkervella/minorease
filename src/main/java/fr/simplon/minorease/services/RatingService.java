@@ -43,7 +43,7 @@ public class RatingService {
         return ratingRepository.save(rating);
     }
 
-   /* public double calculerMoyenneNotes(Hotel hotel) {
+    /*public double calculerMoyenneNotes(Hotel hotel) {
         List<Rating> ratings = ratingRepository.findByHotel(hotel);
 
         if (ratings.isEmpty()) {
@@ -59,7 +59,7 @@ public class RatingService {
         }
 
         return sommeNotes / ratings.size();
-    } */
+    }
     public String obtenirMessageNote(double moyenneNotes) {
         if (moyenneNotes == 0) {
             return "Pas de notes disponibles.";
@@ -67,5 +67,8 @@ public class RatingService {
             return "Moyenne des notes : " + moyenneNotes;
         }
     }
+
+     */
 }
+
 

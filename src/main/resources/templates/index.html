@@ -11,13 +11,11 @@
 
 <body>
 
-<header th:replace="~{fragments/fragment-header :: header}"></header>
+<header th:replace="~{fragments/fragment-header :: header}">
+</header>
 
 <main>
-    <div class="welcome">
-        <h1 class="welcome-title">Voyagez en toute confiance avec MINOREASE</h1>
-        <p class="welcome-text">Application de réservation d'hôtels pour les 16 / 17 ans </p>
-    </div>
+
 
     <div class="research">
         <h2>Pour chercher un hôtel, c'est par ici <img src="fleche.PNG" class="fleche"/></h2>
@@ -38,20 +36,87 @@
         </form>
     </div>
 
-    <div class="description">
-        <div class="description-zone">
-            <h2>Quels sont les avantages de MINOREASE ?</h2>
-            <p>Minorease permet aux jeunes de 16 et 17 ans de gagner en autonomie en leur permettant de voyager dans un contexte sécurisé. </p>
-        </div>
-        <div class="description-zone">
-            <p>Large choix d'hôtels qui accueillent les jeunes de 16 et 17 ans</p>
-            <p>Gestion sécurisée des documents d'identité</p>
-            <p>Interface simple et ludique pour le suivi de vos réservations</p>
-        </div>
+    <div class="welcome">
+        <h1 class="welcome-title">Voyagez en toute confiance avec MINOREASE</h1>
+        <p class="welcome-text">Application de réservation d'hôtels pour les 16 / 17 ans </p>
     </div>
 
+
+    <div class="description">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="card mb-3">
+
+                        <div class="card-body">
+
+                            <h2 class="card-title">Quels sont les avantages de MINOREASE ?</h2>
+
+                            <p class="card-text">Minorease permet aux jeunes de 15 ans à 18 ans de loger dans un
+                                contexte sécurisé lors de leurs déplacements.</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="card mb-3">
+
+                        <div class="card-body">
+
+                            <h4 class="card-title">Pourquoi choisir MINOREASE ?</h4>
+
+                            <ul class="list-unstyled">
+
+                                <li class="d-flex align-items-center">
+
+                                    <i class="bi bi-building text-primary"></i>
+
+                                    <span class="ms-2">Un large choix d'hôtels assurant l'accueil des mineurs</span>
+
+                                </li>
+
+                                <li class="d-flex align-items-center">
+
+                                    <i class="bi bi-shield-lock text-primary"></i>
+
+                                    <span class="ms-2">Une gestion sécurisée des documents d'identité</span>
+
+                                </li>
+
+                                <li class="d-flex align-items-center">
+
+                                    <i class="bi bi-gear text-primary"></i>
+
+                                    <span class="ms-2">Une interface simple et pratique pour le suivi de vos réservations</span>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </main>
 <footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
