@@ -3,7 +3,7 @@ package fr.simplon.minorease;
 import fr.simplon.minorease.entities.Chambre;
 import fr.simplon.minorease.entities.Hotel;
 import fr.simplon.minorease.entities.Reservation;
-import fr.simplon.minorease.services.RechercheServices;
+import fr.simplon.minorease.services.RechercheService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class RechercheTest {
 
-    @Autowired RechercheServices rechercheServices;
+    @Autowired
+    RechercheService rechercheService;
 
     RechercheTest rechercheTest;
     List<Hotel> allHotels;
@@ -59,21 +60,21 @@ public class RechercheTest {
 
     @Test
     void testGetHotelsDisponibles() {
-        List<Hotel> result = rechercheServices.getHotelsDisponibles(allHotels, dateDebut, dateFin);
+        List<Hotel> result = rechercheService.getHotelsDisponibles(allHotels, dateDebut, dateFin);
         assertNotNull(result);
         assertEquals(1, result.size());
     }
 
     @Test
     void testGetChambresDisponibles() {
-        List<Chambre> result = rechercheServices.getChambresDisponibles(allChambres, dateDebut, dateFin);
+        List<Chambre> result = rechercheService.getChambresDisponibles(allChambres, dateDebut, dateFin);
         assertNotNull(result);
         assertEquals(1, result.size());
     }
 
     @Test
     void testEstDisponible() {
-        boolean result = rechercheServices.estDisponible(allReservations, dateDebut, dateFin);
+        boolean result = rechercheService.estDisponible(allReservations, dateDebut, dateFin);
         assertFalse(result);
     }
 }

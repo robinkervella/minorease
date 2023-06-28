@@ -32,6 +32,9 @@ public class RatingService {
     }
 
     public Rating laisserNote(Parent parent, Hotel hotel, Double note) {
+        if (note < 0 || note > 5) {
+            throw new IllegalArgumentException("La note doit être comprise entre 0 et 5");
+        }
         Rating rating = new Rating();
         rating.setParent(parent);
         rating.setHotel(hotel);
@@ -39,12 +42,12 @@ public class RatingService {
 
         return ratingRepository.save(rating);
     }
-/*
+
     public double calculerMoyenneNotes(Hotel hotel) {
         List<Rating> ratings = ratingRepository.findByHotel(hotel);
 
         if (ratings.isEmpty()) {
-            return 0.0; // Retourner 0 si aucune note n'est disponible
+            return 0.0;
         }
 
         double sommeNotes = 0.0;
@@ -64,7 +67,5 @@ public class RatingService {
             return "Moyenne des notes : " + moyenneNotes;
         }
     }
-
- */
 }
 

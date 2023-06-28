@@ -13,7 +13,7 @@ import java.util.List;
  * Cette classe fournit des services de recherche pour les hôtels, les chambres et les réservations.
  */
 @Service
-public class RechercheServices {
+public class RechercheService {
 
     /**
      * Recherche les hôtels disponibles dans la fourchette de prix spécifiée.
