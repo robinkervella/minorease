@@ -12,3 +12,16 @@
     background: url("logo_minorease.png") no-repeat center center;
     background-size: contain;
 }
+
+
+ .navbar-brand {
+     margin-right: auto;
+     margin-left: 15px;
+ }
+.navbar-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+.navbar-nav {
+    margin-left: auto;
+}
