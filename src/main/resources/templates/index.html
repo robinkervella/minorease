@@ -21,7 +21,7 @@
 
     <div class="research">
         <h2>Pour chercher un hôtel, c'est par ici <img src="fleche.PNG" class="fleche"/></h2>
-        <form method="get" class="research-form" th:action="@{/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}}">
+        <form method="get" class="research-form" th:action="@{/chercherHotel}">
             <div class="filters">
                 <label for="dateDebut">Arrivée ?</label>
                 <input type="date" id="dateDebut" name="dateDebut" placeholder="Date de début">
