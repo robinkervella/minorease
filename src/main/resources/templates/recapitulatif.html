@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <title>Récapitulatif réservation</title>
     <th:block th:replace="~{fragments/fragment-meta :: html-header}"></th:block>
@@ -8,77 +9,166 @@
     <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
     <link rel="icon" href="/FavIcon.png">
     <link rel="shortcut icon" href="/FavIcon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="/styleRecap.css">
 </head>
 
 <body>
 
-<header th:replace="~{fragments/fragment-header :: header}"></header>
-
-<main>
+<header th:replace="~{fragments/fragment-header :: header}" class="mb-4"></header>
+<main class="container mt-4">
     <!-- Bloc des informations de récapitulatif de réservation -->
-    <div class="reservation-info">
-        <h2>Récapitulatif de réservation</h2>
-        <!-- Contenu du bloc récapitulatif de réservation -->
-    </div>
+    <div class="reservation-info custom-block mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Récapitulatif de réservation</h2>
+                <div class="col-md-6">
+                    <h2>Hôtel :</h2>
+                    <div>
+                        <h3>Hôtel :</h3>
+                        <img th:src="@{image.url}">
+                        <p>Libellé : <span th:text="${hotel.libelle}"></span></p>
+                        <p>Description : <span th:text="${hotel.description}"></span></p>
+                        <p>Adresse : <span th:text="${hotel.adresse}"></span></p>
+                        <p>Ville : <span th:text="${hotel.ville}"></span></p>
+                    </div>
+                </div>
 
-    <!-- Bloc des options Kidcab -->
-    <div class="kidcab-options">
-        <h2>Mes options</h2>
-        <div class="kidcab-option">
-            <label for="kidcab-checkbox">Kidcab :</label>
-            <input type="checkbox" id="kidcab-checkbox">
-            <p>Kidcab accompagne les mineurs dans leur besoin de trajet quotidien en semaine,
-                le week-end, mais aussi lors des vacances scolaires</p>
+                <div th:each="chambre : ${chambres}">
+                    <div>
+                        <h3>Chambre :</h3>
+                        <p>Nombre de lits : <span th:text="${chambre.nombre_lit}"></span></p>
+                        <p>Prix : <span th:text="${chambre.prix}"></span></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- Bloc des informations du parent -->
-    <div class="parent-info">
-        <h2>Représentant légal</h2>
-        <p>“Je soussigné(e) Monsieur ou Madame <input type="text" id="nom-representant" placeholder="prénom et nom">
-            représentant légal du mineur <input type="text" id="nom-mineur" placeholder="prénom et nom">
-            agissant en ma qualité de <input type="text" id="qualite"
-                                             placeholder="père ou mère titulaire de l’autorité parentale ou tuteur légal">
-            autorise ce(tte) dernier(ère) à séjourner seul(e) dans votre hôtel pour la période du
-            <input type="text" id="date-debut" placeholder="jj/mm/aaaa"> au
-            <input type="text" id="date-fin" placeholder="jj/mm/aaaa">."</p>
+
+    <!-- Bloc des options Kidcab -->
+    <div class="kidcab-options mt-4 mb-4">
+        <div class="card shadow p-4">
+            <h2 class="mb-4">Mes options</h2>
+            <div class="kidcab-option">
+                <label for="kidcab-checkbox">Kidcab :</label>
+                <input type="checkbox" id="kidcab-checkbox">
+                <p>Kidcab accompagne les mineurs dans leur besoin de trajet quotidien en semaine,
+                    le week-end, mais aussi lors des vacances scolaires</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-4 d-flex">
+        <div class="col-md-6">
+            <div class="card shadow p-4 h-100">
+                <h2 class="mb-4">Information du mineur</h2>
+                <form>
+                    <div class="form-group mb-3">
+                        <label for="prenom-mineur">Prénom (du mineur) :</label>
+                        <input type="text" id="prenom-mineur" name="prenom-mineur" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="nom-mineur">Nom (du mineur) :</label>
+                        <input type="text" id="nom_mineur" name="nom-mineur" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="telephone-mineur">Numéro de téléphone (du mineur) :</label>
+                        <input type="tel" id="telephone-mineur" name="telephone-mineur" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="adresse-mail_M">Adresse mail (mineur) :</label>
+                        <input type="email" id="adresse-mail_M" name="adresse-mail" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Valider</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow p-4 h-100">
+                <h2 class="mb-4">Information du représentant légal</h2>
+                <form>
+                    <div class="form-group mb-3">
+                        <label for="adresse-mail_R">Adresse mail (représentant légal) :</label>
+                        <input type="email" id="adresse-mail_R" name="adresse-mail" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="telephone-parents">Numéro de téléphone (du représentant légal) :</label>
+                        <input type="tel" id="telephone-parents" name="telephone-parents" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="pays">Pays :</label>
+                        <input type="text" id="pays" name="pays" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="document-identite">Carte nationale d’identité ou passeport (PDF) :</label>
+                        <input type="file" id="document-identite" name="document-identite" accept=".pdf" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="livret-famille">Livret de famille ou jugement de tutelle (PDF) :</label>
+                        <input type="file" id="livret-famille" name="livret-famille" accept=".pdf" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Valider</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="représentant-doc mt-4">
+        <div class="card shadow p-4">
+            <h2 class="mb-4">Représentant légal</h2>
+            <p>Je soussigné(e) Monsieur ou Madame <input type="text" id="nom-representant"
+                                                         placeholder="prénom et nom">
+                représentant légal du mineur <input type="text" id="nom-mineur" placeholder="prénom et nom">
+                agissant en ma qualité de <input type="text" id="qualite"
+                                                 placeholder="représentant légal">
+                autorise ce(tte) dernier(ère) à séjourner seul(e) dans votre hôtel pour la période du
+                <input type="text" id="date-debut" placeholder="jj/mm/aaaa"> au
+                <input type="text" id="date-fin" placeholder="jj/mm/aaaa">.</p>
+        </div>
     </div>
 
 
     <!-- Bloc des informations de paiement -->
-    <div class="payment-info">
-        <h2>Informations de paiement</h2>
-        <form>
-            <div class="form-group">
-                <label for="card-number">Numéro de carte :</label>
-                <input type="text" id="card-number" name="card-number" class="form-control"
-                       placeholder="1234 5678 9012 3456" required>
-            </div>
-            <div class="form-group">
-                <label for="card-holder">Titulaire de la carte :</label>
-                <input type="text" id="card-holder" name="card-holder" class="form-control"
-                       placeholder="Nom du titulaire" required>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="expiry-date">Date d'expiration :</label>
-                    <input type="text" id="expiry-date" name="expiry-date" class="form-control" placeholder="MM/AA"
-                           required>
+    <div class="payment-info mt-4">
+        <div class="card shadow p-4">
+            <h2 class="mb-4">Information de paiement</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="card-number" class="form-label">Numéro de carte :</label>
+                    <input type="text" id="card-number" name="card-number" class="form-control"
+                           placeholder="1234 5678 9012 3456" required>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="cvv">CVV :</label>
-                    <input type="text" id="cvv" name="cvv" class="form-control" placeholder="123" required>
+                <div class="mb-3">
+                    <label for="card-holder" class="form-label">Titulaire de la carte :</label>
+                    <input type="text" id="card-holder" name="card-holder" class="form-control"
+                           placeholder="Nom du titulaire" required>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Valider le paiement</button>
-        </form>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="expiry-date" class="form-label">Date d'expiration :</label>
+                        <input type="text" id="expiry-date" name="expiry-date" class="form-control" placeholder="MM/AA"
+                               required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="cvv" class="form-label">CVV :</label>
+                        <input type="text" id="cvv" name="cvv" class="form-control" placeholder="123" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Valider le paiement</button>
+            </form>
+        </div>
     </div>
-
 </main>
+
 <footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
