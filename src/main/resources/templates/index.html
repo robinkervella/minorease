@@ -20,7 +20,7 @@
 
     <div class="research">
         <h2>Pour chercher un hôtel, c'est par ici <img src="fleche.PNG" class="fleche"/></h2>
-        <form class="research-form">
+        <form method="get" class="research-form" th:action="@{/chercherHotel}">
             <div class="filters">
                 <label for="dateDebut">Arrivée ?</label>
                 <input type="date" id="dateDebut" name="dateDebut" placeholder="Date de début">
@@ -33,7 +33,12 @@
                 <label for="ville">Où ?</label>
                 <input type="text" id="ville" name="ville" placeholder="ex. : Paris">
             </div>
+            <div class="filters">
+                <label for="nbPersonne">Combien de personne ?</label>
+                <input type="number" id="nbPersonne" name="nbPersonne" placeholder="Nombre de personne">
+            </div>
             <button type="submit" class="research-button">Go</button>
+
         </form>
     </div>
 
