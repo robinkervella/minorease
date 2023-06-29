@@ -2,17 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${hotels.libelle}">Hôtel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styleFiche.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
     <link rel="icon" href="/FavIcon.png">
     <link rel="shortcut icon" href="/FavIcon.png">
+    <title th:text="${hotel.libelle}">Hôtel</title>
 </head>
 <body>
 <header th:replace="~{fragments/fragment-header :: header}"></header>
 
 <main>
+    <div class="container">
+        <div class="card">
+            <img src="/hotel.jpg" class="card-img-top" alt="hotel"
+                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2);">
+            <div class="card-body">
+                <h5 th:text="${hotel.libelle}" class="card-title"></h5>
+                <div class="description" th:text="${hotel.description}"></div>
+                <p class="preformatted-text">Bienvenue à notre hôtel !
+
+                    Nous sommes ravis de vous accueillir dans notre établissement. Que vous soyez ici pour affaires ou
+                    pour vous détendre, nous ferons de notre mieux pour rendre votre séjour des plus agréables.
+
+                    Profitez de notre hospitalité chaleureuse et de nos services de qualité. Détendez-vous dans nos
+                    chambres confortables, savourez des plats délicieux dans notre restaurant, et laissez-vous dorloter
+                    par notre équipe attentionnée.
+
+                    Que vous souhaitiez explorer les attractions locales, organiser des réunions fructueuses ou
+                    simplement vous relaxer, nous sommes là pour répondre à tous vos besoins.
+
+                    N'hésitez pas à nous contacter si vous avez la moindre demande spéciale ou si vous avez besoin
+                    d'informations supplémentaires. Notre équipe est là pour rendre votre séjour inoubliable.
+
+                    Nous vous souhaitons un séjour fantastique et espérons que vous repartirez avec de merveilleux
+                    souvenirs de votre passage dans notre hôtel.</p>
+            </div>
+        </div>
+        <div class="card">
+            <p class="card-text"><small class="text-body-secondary">Chambre lit simple</small></p>
+            <img src="/hotel.jpg" alt="hotel" class="img-fluid" style="max-width: 300px; max-height: 200px;">
+            <img src="/hotel.jpg" alt="hotel" class="img-fluid" style="max-width: 300px; max-height: 200px;">
+            <button type="button" class="btn"
+                    style="background-color: #92e3a9; color: black; border: none; border-radius: 4px; padding: 10px;">
+                Réserver
+            </button>
+            <p class="card-text"><small class="text-body-secondary">Chambre lit double</small></p>
+            <img src="/hotel.jpg" alt="hotel" class="img-fluid" style="max-width: 300px; max-height: 200px;">
+            <img src="/hotel.jpg" alt="hotel" class="img-fluid" style="max-width: 300px; max-height: 200px;">
+            <button type="button" class="btn"
+                    style="background-color: #92e3a9; color: black; border: none; border-radius: 4px; padding: 10px;">
+                Réserver
+            </button>
+        </div>
+         <div class="container" alt="infoshotel" th:object="${book}">
+             <div class="adresse" th:text="${hotel.adresse}"></div>
+             <div class="codepostal" th:text="${hotel.code_postal}"></div>
+             <div class="ville" th:text="${hotel.ville}"></div>
+             <div class="url" th:text="${hotel.url}"></div>
+             <div class="moyenne" th:text="${hotel.moyenne}"></div>
+         </div>
+
+    </div>
+
 
 </main>
 
