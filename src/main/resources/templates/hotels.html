@@ -1,49 +1,130 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/styleHotels.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="icon" href="/FavIcon.png">
-  <link rel="shortcut icon" href="/FavIcon.png">
-  <title>Affichage de la recherche d'hôtels</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <th:block th:replace="~{fragments/fragment-meta :: html-header}"></th:block>
+    <link rel="stylesheet" href="/styleHotels.css">
+    <link rel="stylesheet" href="/styleFragmentRecherche.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
+    <title>Affichage de la recherche d'hôtels</title>
 </head>
 
 <body>
-  <header th:replace="~{fragments/fragment-header :: header}"></header>
-  <main>
-    <div class="container">
-      <div class="row">
-        <div th:each="hotel : ${hotel}" class="col-md-4">
-          <div class="card">
-            <div id="carousel-${hotel.id}" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div th:each="image, iterStat : ${hotel.images}" th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
-                  <img th:src="${image.url}" class="d-block w-100" th:alt="${hotel.libelle}">
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="'#carousel-' + ${hotel.id}" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="'#carousel-' + ${hotel.id}" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-            <div class="card-body">
-              <p class="card-text" th:text="${hotel.ville}"></p>
-              <p class="card-title" th:text="${hotel.libelle}"></p>
-              <p class="card-text" th:text="${hotel.description}"></p>
-              <a href="#" class="btn btn-primary">Réserver</a>
-            </div>
-          </div>
+
+    <header th:replace="~{fragments/fragment-header :: header}"></header>
+
+    <main>
+
+        <div class="research">
+            <fragmentRecherche th:replace="~{fragments/fragment-recherche :: recherche}"></fragmentRecherche>
         </div>
-      </div>
-    </div>
-  </main>
-  <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-X4fyO6INZr3nFUYnQwzmkq78FgDF72id/pN3w8mAw7qln5qLWtzGNFcMH1Z0xucw" crossorigin="anonymous"></script>
-</body>
+
+
+        <div class="box">
+            <div class="search-box">
+                <div id="mapid"></div>
+                <form method="get" class="details" th:action="@{/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}/{prixMax}/{prixMini}}">
+                    <h1>Plus de critères ?</h1>
+                    <div class="prix-inputs">
+                        <label class="filters-title">Budget</label>
+                        <input type="number" id="prixMin" name="prixMin" placeholder="Minimum">
+                        <span> €  - </span>
+                        <input type="number" id="prixMax" name="prixMax" placeholder="Maximum">
+                        <span> €</span>
+                    </div>
+                    <label class="filters-title">Type de logement</label>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="hotel" value="type">
+                        <label class="checkbox-name" for="hotel">Hôtel</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="logement" value="type">
+                        <label class="checkbox-name" for="logement">Logement entier</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="auberge" value="type">
+                        <label class="checkbox-name" for="auberge">Auberge de jeunesse</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="autre" value="type">
+                        <label class="checkbox-name" for="autre">Autre</label>
+                    </div>
+                    <label class="filters-title">Sécurité</label>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="gardiennage" value="gardiennage">
+                        <label class="checkbox-name" for="gardiennage">Gardiennage 24/24</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="code" value="code">
+                        <label class="checkbox-name" for="code">Accès sécurisé (badge)</label>
+                    </div>
+                    <label class="filters-title">Services</label>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="restauration" value="restauration">
+                        <label class="checkbox-name" for="restauration">Restauration</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="navette" value="navette">
+                        <label class="checkbox-name" for="navette">Service de navette</label>
+                    </div>
+                    <label class="filters-title">Équipements</label>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="wifi" name="equipements" value="wifi">
+                        <label class="checkbox-name" for="wifi">WiFi</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="tv" name="equipements" value="tv">
+                        <label class="checkbox-name" for="tv">TV</label>
+                    </div>
+                    <button type="submit" class="filters-button">Go</button>
+                </form>
+
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div th:each="hotel : ${hotel}" class="col-md-4">
+                        <div class="card">
+                            <div class="photo">
+                                <div id="carouselExample" class="carousel slide">
+                                    <div class="carousel-inner">
+                                        <div th:each="image, iterStat : ${hotel.images}"
+                                             th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+                                            <img th:src="${image.url}" class="d-block w-100 image-height" th:alt="${hotel.libelle}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <p class="card-text ville" th:text="${hotel.ville + ', ' + hotel.pays}"></p>
+                                <p class="card-title libelle" th:text="${hotel.libelle}"></p>
+                                <p class="card-text texte" th:text="${hotel.description}"></p>
+                                <a href="#" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+    </body>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/javascript/hotelsMap.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="/javascript/carrouselPhoto.js"></script>
+
 
 </html>
