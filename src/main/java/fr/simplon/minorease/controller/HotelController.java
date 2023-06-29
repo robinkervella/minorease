@@ -87,4 +87,5 @@ public class HotelController {
     public String afficherRecapReservation(){
         return "recapitulatif";
     }
+
 }
