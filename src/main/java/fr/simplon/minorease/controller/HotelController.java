@@ -86,7 +86,7 @@ public class HotelController {
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
         Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
         model.addAttribute("hotel", hotel);
-        return "reservation";
+        return "ficheHotel";
     }
 
     @GetMapping(path = "reserver/hotel/{id}/recap")
