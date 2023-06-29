@@ -3,6 +3,8 @@ package fr.simplon.minorease.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "mineur")
 public class Mineur {
@@ -16,6 +18,17 @@ public class Mineur {
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Parent parent;
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    @OneToMany(mappedBy = "mineur")
+    private List<Reservation> reservations;
 
     public int getId() {
         return id;
