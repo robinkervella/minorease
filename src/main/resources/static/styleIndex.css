@@ -7,14 +7,15 @@ body{
     height: 500px;
     font-family: "DejaVu Sans Light";
     background-image: url("dessinvert.jpg");
-    background-position: right;
+    background-position: right top;
+    margin-right: 70px;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .welcome h1{
     padding-top: 50px;
-    margin-left: 50px;
+    margin-left: 70px;
     font-size: 60px;
     width: 40%;
 }
@@ -27,7 +28,7 @@ body{
 .research{
     display: flex;
     justify-content: space-evenly;
-    margin-top: 80px;
+    margin-top: 80px; /*Makes sure the header don't hide the research section*/
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -37,6 +38,7 @@ body{
 }
 .research h2 {
     font-family: 'Delicious Handrawn', cursive;
+
 }
 
 .fleche{
@@ -59,7 +61,8 @@ input {
 }
 
 label{
-    font-size: 8px;
+    display: flex;
+    justify-content: space-evenly;
     font-weight: bold;
 }
 
@@ -78,6 +81,7 @@ label{
 
 .description{
     display: flex;
+    margin-top: 50px;
 }
 
 .description-zone{
@@ -86,4 +90,6 @@ label{
     width: 45%;
     margin: 10px;
 }
+
+
 

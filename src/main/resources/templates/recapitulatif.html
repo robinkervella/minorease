@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Récapitulatif réservation</title>
+    <th:block th:replace="~{fragments/fragment-meta :: html-header}"></th:block>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
+    <link rel="icon" href="/FavIcon.png">
+    <link rel="shortcut icon" href="/FavIcon.png">
+</head>
+
+<body>
+
+<header th:replace="~{fragments/fragment-header :: header}"></header>
+
+<main>
+    <!-- Bloc des informations de récapitulatif de réservation -->
+    <div class="reservation-info">
+        <h2>Récapitulatif de réservation</h2>
+        <!-- Contenu du bloc récapitulatif de réservation -->
+    </div>
+
+    <!-- Bloc des options Kidcab -->
+    <div class="kidcab-options">
+        <h2>Mes options</h2>
+        <div class="kidcab-option">
+            <label for="kidcab-checkbox">Kidcab :</label>
+            <input type="checkbox" id="kidcab-checkbox">
+            <p>Kidcab accompagne les mineurs dans leur besoin de trajet quotidien en semaine,
+                le week-end, mais aussi lors des vacances scolaires</p>
+        </div>
+    </div>
+
+    <!-- Bloc des informations du parent -->
+    <div class="parent-info">
+        <h2>Représentant légal</h2>
+        <p>“Je soussigné(e) Monsieur ou Madame <input type="text" id="nom-representant" placeholder="prénom et nom">
+            représentant légal du mineur <input type="text" id="nom-mineur" placeholder="prénom et nom">
+            agissant en ma qualité de <input type="text" id="qualite"
+                                             placeholder="père ou mère titulaire de l’autorité parentale ou tuteur légal">
+            autorise ce(tte) dernier(ère) à séjourner seul(e) dans votre hôtel pour la période du
+            <input type="text" id="date-debut" placeholder="jj/mm/aaaa"> au
+            <input type="text" id="date-fin" placeholder="jj/mm/aaaa">."</p>
+    </div>
+
+
+    <!-- Bloc des informations de paiement -->
+    <div class="payment-info">
+        <h2>Informations de paiement</h2>
+        <form>
+            <div class="form-group">
+                <label for="card-number">Numéro de carte :</label>
+                <input type="text" id="card-number" name="card-number" class="form-control"
+                       placeholder="1234 5678 9012 3456" required>
+            </div>
+            <div class="form-group">
+                <label for="card-holder">Titulaire de la carte :</label>
+                <input type="text" id="card-holder" name="card-holder" class="form-control"
+                       placeholder="Nom du titulaire" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="expiry-date">Date d'expiration :</label>
+                    <input type="text" id="expiry-date" name="expiry-date" class="form-control" placeholder="MM/AA"
+                           required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="cvv">CVV :</label>
+                    <input type="text" id="cvv" name="cvv" class="form-control" placeholder="123" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Valider le paiement</button>
+        </form>
+    </div>
+
+</main>
+<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
