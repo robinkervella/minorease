@@ -1,6 +1,9 @@
 package fr.simplon.minorease.controller;
 
+import fr.simplon.minorease.entities.Chambre;
 import fr.simplon.minorease.entities.Hotel;
+import fr.simplon.minorease.entities.Image;
+import fr.simplon.minorease.repositories.ChambreRepository;
 import fr.simplon.minorease.repositories.HotelRepository;
 import fr.simplon.minorease.services.RechercheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,9 @@ public class HotelController {
     private RechercheService rechercheService;
     @Autowired
     private HotelRepository hotelRepository;
+
+    @Autowired
+    private ChambreRepository chambreRepository;
 
     /**
      * Recherche des hôtels en fonction des critères de l'utilisateur.
@@ -80,11 +86,18 @@ public class HotelController {
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
         Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
         model.addAttribute("hotel", hotel);
-        return "reservation";
+        return "ficheHotel";
     }
 
     @GetMapping(path = "reserver/hotel/{id}/recap")
-    public String afficherRecapReservation(){
+    public String afficherRecapReservation(@PathVariable Long id,Model model){
+        Optional<Hotel> optionalHotel = hotelRepository.findById(id);
+        Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
+        List<Chambre> allChambres = chambreRepository.findAll();
+        Image image = hotel.getImages().get(1);
+        model.addAttribute("chambres", allChambres);
+        model.addAttribute("hotel",hotel);
+        model.addAttribute("image",image);
         return "recapitulatif";
     }
 
