@@ -7,22 +7,32 @@
     font-family: "DejaVu Sans Light";
 }
 
+.nav-link.active {
+    text-decoration: underline dotted;
+    padding-bottom: 10px;
+}
+
 .navbar-logo {
     width: 150px;
     height: 70px;
-    background: url("logominor.jpg") no-repeat center center;
+    background: url("minoreaselogo.png") no-repeat center center;
     background-size: contain;
 }
 
 
- .navbar-brand {
-     margin-right: auto;
-     margin-left: 15px;
- }
+.navbar-brand {
+    margin-right: auto;
+    margin-left: 15px;
+}
+
 .navbar-title {
     font-weight: bold;
     font-size: 20px;
 }
+
 .navbar-nav {
     margin-left: auto;
 }
+
+
+
