@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <title>Accueil</title>
     <th:block th:replace="~{fragments/fragment-meta :: html-header}"></th:block>
@@ -9,19 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
     <link rel="icon" href="/FavIcon.png">
     <link rel="shortcut icon" href="/FavIcon.png">
-</head>0000
+</head>
 
 <body>
 
-<header th:replace="~{fragments/fragment-header :: header}">
-</header>
+<header th:replace="~{fragments/fragment-header :: header}"></header>
 
 <main>
 
 
     <div class="research">
         <h2>Pour chercher un hôtel, c'est par ici <img src="fleche.PNG" class="fleche"/></h2>
-        <form class="research-form">
+        <form method="get" class="research-form" th:action="@{/chercherHotel}">
             <div class="filters">
                 <label for="dateDebut">Arrivée ?</label>
                 <input type="date" id="dateDebut" name="dateDebut" placeholder="Date de début">
@@ -34,85 +33,60 @@
                 <label for="ville">Où ?</label>
                 <input type="text" id="ville" name="ville" placeholder="ex. : Paris">
             </div>
+            <div class="filters">
+                <label for="nbPersonne">Nombre de voyageurs</label>
+                <input type="number" id="nbPersonne" name="nbPersonne" placeholder="ex. : 1">
+            </div>
             <button type="submit" class="research-button">Go</button>
+
         </form>
     </div>
 
     <div class="welcome">
-        <h1 class="welcome-title">Voyagez en toute confiance avec MINOREASE</h1>
-        <p class="welcome-text">Application de réservation d'hôtels à partir de 16ans </p>
+        <div class="welcome-text">
+            <h1 class="welcome-title">Voyagez en toute confiance avec MINOREASE</h1>
+            <p class="welcome-text">Application de réservation d'hôtels à partir de 16 ans </p>
+        </div>
+        <div class="welcome-image">
+        </div>
     </div>
 
 
     <div class="description">
-
         <div class="container">
-
             <div class="row">
-
                 <div class="col-md-6">
-
                     <div class="card mb-3">
-
                         <div class="card-body">
-
-                            <h2 class="card-title">Quels sont les avantages de MINOREASE ?</h2>
-
+                            <h2 class="card-title">Les objectifs de MINOREASE ?</h2>
                             <p class="card-text">Minorease permet aux jeunes de 15 ans à 18 ans de loger dans un
                                 contexte sécurisé lors de leurs déplacements.</p>
-
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="col-md-6">
-
                     <div class="card mb-3">
-
                         <div class="card-body">
-
                             <h4 class="card-title">Pourquoi choisir MINOREASE ?</h4>
-
                             <ul class="list-unstyled">
-
                                 <li class="d-flex align-items-center">
-
                                     <i class="bi bi-building text-primary"></i>
-
-                                    <span class="ms-2">Un large choix d'hôtels assurant l'accueil des mineurs</span>
-
+                                    <span class="ms-2 card-text">Un large choix d'hôtels assurant l'accueil des mineurs</span>
                                 </li>
-
                                 <li class="d-flex align-items-center">
-
                                     <i class="bi bi-shield-lock text-primary"></i>
-
-                                    <span class="ms-2">Une gestion sécurisée des documents d'identité</span>
-
+                                    <span class="ms-2 card-text">Une gestion sécurisée des documents d'identité</span>
                                 </li>
-
                                 <li class="d-flex align-items-center">
-
                                     <i class="bi bi-gear text-primary"></i>
-
-                                    <span class="ms-2">Une interface simple et pratique pour le suivi de vos réservations</span>
-
+                                    <span class="ms-2 card-text">Une interface simple et pratique pour le suivi de vos réservations</span>
                                 </li>
-
                             </ul>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </main>
 <footer th:replace="~{fragments/fragment-footer :: footer}"></footer>

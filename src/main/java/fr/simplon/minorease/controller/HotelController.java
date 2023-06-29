@@ -4,17 +4,23 @@ import fr.simplon.minorease.entities.Hotel;
 import fr.simplon.minorease.repositories.HotelRepository;
 import fr.simplon.minorease.services.RechercheService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
+/**
+ * Classe contrôleur pour la gestion des hôtels.
+ */
 @Controller
 public class HotelController {
     @Autowired
@@ -22,28 +28,64 @@ public class HotelController {
     @Autowired
     private HotelRepository hotelRepository;
 
-    @GetMapping("/hotels")
-    public String afficherHotels(@RequestParam(defaultValue = "0") int page, Model model) {
-        int pageSize = 10; // Nombre d'hôtels par page
-        Pageable pageable = PageRequest.of(page, pageSize);
-        Page<Hotel> hotels = hotelRepository.findAll(pageable);
-        model.addAttribute("hotels", hotels);
-        return "hotels";
-    }
-    @GetMapping(path = "/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}")
-    public String rechercherUnHotel(@PathVariable String ville, @PathVariable LocalDateTime dateDebut, @PathVariable LocalDateTime dateFin, @PathVariable int nbPersonne, Model model) {
+    /**
+     * Recherche des hôtels en fonction des critères de l'utilisateur.
+     *
+     * @param dateDebut date de début du séjour
+     * @param dateFin date de fin du séjour
+     * @param nbPersonne nombre de personnes pour le séjour
+     * @param ville ville où l'hôtel est recherché
+     * @param model modèle pour passer des attributs à la vue
+     * @return hotels le nom de la vue à afficher
+     */
+    @GetMapping(path = "/chercherHotel")
+    public String rechercherUnHotel(
+            @RequestParam("dateDebut") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateDebut,
+            @RequestParam("dateFin") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateFin,
+            @RequestParam("nbPersonne") int nbPersonne,
+            @RequestParam("ville") String ville,  Model model) {
         List<Hotel> allHotels = hotelRepository.findAll();
-        List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels,ville,dateDebut,dateFin,nbPersonne);
+        LocalDateTime localDateTimeDebut = LocalDateTime.of(dateDebut, LocalTime.MIDNIGHT);
+        LocalDateTime localDateTimeFin = LocalDateTime.of(dateFin, LocalTime.MIDNIGHT);
+        List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels,ville,localDateTimeDebut,localDateTimeFin,nbPersonne);
         model.addAttribute("hotel", listeARetourner);
         return "hotels";
     }
 
+    /**
+     * Recherche des hôtels en fonction des critères de l'utilisateur, y compris le prix.
+     *
+     * @param ville ville où l'hôtel est recherché
+     * @param dateDebut date de début du séjour
+     * @param dateFin date de fin du séjour
+     * @param nbPersonne nombre de personnes pour le séjour
+     * @param prixMini prix minimum que l'utilisateur est prêt à payer
+     * @param prixMax prix maximum que l'utilisateur est prêt à payer
+     * @param model modèle pour passer des attributs à la vue
+     * @return hotels le nom de la vue à afficher
+     */
     @GetMapping(path = "/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}/{prixMax}/{prixMini}")
-    public String rechercherUnHotelParPrix(@PathVariable String ville, @PathVariable LocalDateTime dateDebut, @PathVariable LocalDateTime dateFin, int nbPersonne,double prixMax,double prixMini, Model model) {
+    public String rechercherUnHotelParPrix(@RequestParam("ville") String ville, @RequestParam("dateDebut") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateDebut, @RequestParam("dateFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFin, @RequestParam("nbPersonne") int nbPersonne,@RequestParam("prixMini")double prixMini,@RequestParam("prixMax")double prixMax, Model model) {
         List<Hotel> allHotels = hotelRepository.findAll();
-        List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels,ville,dateDebut,dateFin,nbPersonne);
+        LocalDateTime localDateTimeDebut = LocalDateTime.of(dateDebut, LocalTime.MIDNIGHT);
+        LocalDateTime localDateTimeFin = LocalDateTime.of(dateFin, LocalTime.MIDNIGHT);
+        List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels,ville,localDateTimeDebut,localDateTimeFin,nbPersonne);
         List<Hotel> listeTriéAvecPrix = rechercheService.trouverLesHotelsDansLaFourchetteDePrix(listeARetourner,prixMini,prixMax);
         model.addAttribute("hotel", listeTriéAvecPrix);
         return "hotels";
     }
+
+    @GetMapping(path ="reserver/hotel/{id}")
+        public String afficherHotelParSonId(@PathVariable Long id,Model model){
+        Optional<Hotel> optionalHotel = hotelRepository.findById(id);
+        Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
+        model.addAttribute("hotel", hotel);
+        return "reservation";
+    }
+
+    @GetMapping(path = "reserver/hotel/{id}/recap")
+    public String afficherRecapReservation(){
+        return "recapitulatif";
+    }
+
 }
