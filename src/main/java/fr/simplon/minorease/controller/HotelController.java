@@ -4,7 +4,6 @@ import fr.simplon.minorease.entities.Hotel;
 import fr.simplon.minorease.repositories.HotelRepository;
 import fr.simplon.minorease.services.RechercheService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +15,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 /**
  * Classe contrôleur pour la gestion des hôtels.
  */
@@ -71,5 +73,18 @@ public class HotelController {
         List<Hotel> listeTriéAvecPrix = rechercheService.trouverLesHotelsDansLaFourchetteDePrix(listeARetourner,prixMini,prixMax);
         model.addAttribute("hotel", listeTriéAvecPrix);
         return "hotels";
+    }
+
+    @GetMapping(path ="reserver/hotel/{id}")
+        public String afficherHotelParSonId(@PathVariable Long id,Model model){
+        Optional<Hotel> optionalHotel = hotelRepository.findById(id);
+        Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
+        model.addAttribute("hotel", hotel);
+        return "reservation";
+    }
+
+    @GetMapping(path = "reserver/hotel/{id}/recap")
+    public String afficherRecapReservation(){
+        return "recapitulatif";
     }
 }
