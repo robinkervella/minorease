@@ -18,6 +18,10 @@ public class Reservation {
         this.date_fin = of1;
     }
 
+    public Reservation() {
+
+    }
+
     public LocalDateTime getDate_debut() {
         return date_debut;
     }
@@ -41,6 +45,27 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "chambre_id")
     private Chambre chambre;
+    @OneToOne(mappedBy = "reservation")
+    private Rating rating;
+    @ManyToOne
+    @JoinColumn(name = "mineur_id")
+    private Mineur mineur;
+
+    public Mineur getMineur() {
+        return mineur;
+    }
+
+    public void setMineur(Mineur mineur) {
+        this.mineur = mineur;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
 
     public int getId() {
         return id;
@@ -65,4 +90,6 @@ public class Reservation {
     public void setChambre(Chambre chambre) {
         this.chambre = chambre;
     }
+
+
 }
