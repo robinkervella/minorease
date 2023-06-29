@@ -23,8 +23,8 @@ public class HotelController {
     private HotelRepository hotelRepository;
 
     @GetMapping("/hotels")
-    public String afficherHotels(@RequestParam(defaultValue = "0") int page, Model model) {
-        int pageSize = 10; // Nombre d'hôtels par page
+    public String pageHotels(@RequestParam(defaultValue = "0") int page, Model model) {
+        int pageSize = 10;
         Pageable pageable = PageRequest.of(page, pageSize);
         Page<Hotel> hotels = hotelRepository.findAll(pageable);
         model.addAttribute("hotels", hotels);
