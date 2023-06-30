@@ -36,16 +36,16 @@
                 <div class="card">
                     <div class="container">
                         <div th:each="typeChambre : ${typeChambres}">
-                            //<h5 th:number="${'Chambre : ' + valueOf }"> </h5>
+                            <!--<h5 th:number="${'Chambre : ' + valueOf }"> </h5>-->
                             <div class="image-container d-flex flex-wrap justify-content-center">
-                                <img src="/hotel.jpg" alt="hotelimg" class="img-fluid">
-                                <img src="/hotel.jpg" alt="hotelimg" class="img-fluid">
+                                <img src="/litsimple.png" alt="hotelimg" class="img-fluid">
+                                <img src="/litdouble.png" alt="hotelimg" class="img-fluid">
                             </div>
                             <div class="quantity">
                                 <button type="button" onclick="decreaseQuantity('quantityInput')">-</button>
                                 <input style="width: 30px;" type="number" value="0" name="quantity" id="quantityInput">
                                 <button type="button" onclick="increaseQuantity('quantityInput')">+</button>
-                                <div th:with="valueOf=${valueOf+1}"></div>
+                                <!--<div th:with="valueOf=${valueOf+1}"></div>-->
                             </div>
                         </div>
                     </div>
