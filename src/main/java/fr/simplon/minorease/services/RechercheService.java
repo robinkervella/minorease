@@ -192,5 +192,13 @@ public class RechercheService {
         return false;
     }
 
-
+ public List<Integer> renvoyerTypeChambre(List<Chambre> allChambres){
+        List<Integer> listeARetourner = new ArrayList<>();
+        for (Chambre chambre : allChambres){
+            if (!listeARetourner.contains(chambre.getNombre_lit())){
+                listeARetourner.add(chambre.getNombre_lit());
+            }
+        }
+        return listeARetourner;
+ }
 }
