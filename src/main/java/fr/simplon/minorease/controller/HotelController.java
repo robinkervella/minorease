@@ -91,7 +91,7 @@ public class HotelController {
         Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
         List<Integer> typesDeChambre = rechercheService.renvoyerTypeChambre(hotel.getChambres());
         model.addAttribute("hotel", hotel);
-        model.addAttribute("typeChambre",typesDeChambre);
+        model.addAttribute("typeChambres",typesDeChambre);
         return "ficheHotel";
     }
 
