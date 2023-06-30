@@ -16,9 +16,10 @@ public class ReservationService {
     public ReservationService(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
+}
 
-    public List<Reservation> getReservationsByParent(Parent parent) {
+    /*public List<Reservation> getReservationsByParent(Parent parent) {
         return reservationRepository.findByParentOrderByDateDesc(parent);
     }
-}
+}*/
 
