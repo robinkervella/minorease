@@ -32,11 +32,11 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-            <div class="card-body">
+            <div class="card-body" >
               <p class="card-text" th:text="${hotel.ville}"></p>
               <p class="card-title" th:text="${hotel.libelle}"></p>
               <p class="card-text" th:text="${hotel.description}"></p>
-              <a href="#" class="btn btn-primary">Réserver</a>
+              <a th:href="@{/reserver/hotel/{id}(id=${hotel.id})}" class="btn btn-primary">Réserver</a>
             </div>
           </div>
         </div>

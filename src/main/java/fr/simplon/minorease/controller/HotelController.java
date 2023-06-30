@@ -81,7 +81,7 @@ public class HotelController {
         return "hotels";
     }
 
-    @GetMapping(path ="reserver/hotel/{id}")
+    @GetMapping(path ="/reserver/hotel/{id}")
         public String afficherHotelParSonId(@PathVariable Long id,Model model){
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
         Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
@@ -93,7 +93,7 @@ public class HotelController {
     public String afficherRecapReservation(@PathVariable Long id,Model model){
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
         Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
-        List<Chambre> allChambres = chambreRepository.findAll();
+        List<Chambre> allChambres = hotel.getChambres();
         Image image = hotel.getImages().get(1);
         model.addAttribute("chambres", allChambres);
         model.addAttribute("hotel",hotel);
