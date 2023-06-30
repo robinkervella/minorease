@@ -14,7 +14,7 @@ body{
 }
 
 .card {
-    height: 800px;
+    height: 500px;
     padding: 20px;
     margin: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -26,29 +26,39 @@ body{
     }
 }
 
+.card-img-top {
+    height: auto;
+    width: auto;
+}
+
+.chambre {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .card.info {
     height: auto;
-    width: 1100px;
+    width: 1070px;
     margin: auto;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 img {
-    padding: 20px;
+    padding: 10px;
     max-width: 300px;
-    max-height: 200px;
+    max-height: 100px;
 }
 
-h5 {
+
+h4 {
     margin: 20px;
 }
 
-.container.top {
-    margin-top: 150px;
-}
 
 .container {
     display: flex;
@@ -67,5 +77,18 @@ h5 {
 }
 
 .retour {
+    margin-top: 90px;
+    margin-left: 30px;
     display: flex;
+}
+
+@media (max-width: 768px) {
+    .retour {
+        margin-top: auto;
+        margin-left: auto;
+    }
+}
+
+span {
+    text-decoration: underline;
 }
