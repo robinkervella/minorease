@@ -68,7 +68,7 @@ public class HotelController {
 
         model.addAttribute("hotel", hotelsPerPage);
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", (listeARetourner.size() - 1) / pageSize + 1);
+        model.addAttribute("totalPages", listeARetourner.size() / pageSize + (listeARetourner.size() % pageSize == 0 ? 0 : 1));
 
         return "hotels";
     }
