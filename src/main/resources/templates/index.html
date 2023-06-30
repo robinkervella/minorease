@@ -4,11 +4,10 @@
     <title>Accueil</title>
     <th:block th:replace="~{fragments/fragment-meta :: html-header}"></th:block>
     <link rel="stylesheet" href="/styleIndex.css">
+    <link rel="stylesheet" href="/styleFragmentRecherche.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
-    <link rel="icon" href="/FavIcon.png">
-    <link rel="shortcut icon" href="/FavIcon.png">
 </head>
 
 <body>
@@ -16,30 +15,9 @@
 <header th:replace="~{fragments/fragment-header :: header}"></header>
 
 <main>
-
-
     <div class="research">
         <h2>Pour chercher un hôtel, c'est par ici <img src="fleche.PNG" class="fleche"/></h2>
-        <form method="get" class="research-form" th:action="@{/chercherHotel}">
-            <div class="filters">
-                <label for="dateDebut">Arrivée ?</label>
-                <input type="date" id="dateDebut" name="dateDebut" placeholder="Date de début">
-            </div>
-            <div class="filters">
-                <label for="dateFin">Départ ?</label>
-                <input type="date" id="dateFin" name="dateFin">
-            </div>
-            <div class="filters">
-                <label for="ville">Où ?</label>
-                <input type="text" id="ville" name="ville" placeholder="ex. : Paris">
-            </div>
-            <div class="filters">
-                <label for="nbPersonne">Nombre de voyageurs</label>
-                <input type="number" id="nbPersonne" name="nbPersonne" placeholder="ex. : 1">
-            </div>
-            <button type="submit" class="research-button">Go</button>
-
-        </form>
+        <fragmentRecherche th:replace="~{fragments/fragment-recherche :: recherche}"></fragmentRecherche>
     </div>
 
     <div class="welcome">

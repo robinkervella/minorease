@@ -1,0 +1,176 @@
+body{
+    background-color: white;
+}
+
+.box{
+    display: flex;
+}
+
+.search-box{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    margin-left: 20px;
+}
+
+
+.details{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #F8F9FA;
+}
+
+.details h1{
+    margin-top: 10px;
+    font-size: 30px;
+    text-align: center;
+    font-family: "Delicious Handrawn";
+}
+
+
+.prix-inputs{
+    display: inline-block;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.prix-inputs input {
+    width: 120px;
+}
+
+.prix-inputs span {
+    margin-left: 5px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-name{
+    font-weight: lighter;
+}
+
+.checkbox-case{
+    width: 15px;
+    height:15px;
+    margin-right: 20px;
+}
+
+.filters-title{
+    margin-top: 20px;
+}
+
+
+.filters-button{
+    display: flex;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 20px auto 30px auto;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+}
+
+#mapid{
+    width: 300px;
+    height:300px;
+    border: solid black 2px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.card{
+    width: 300px;
+    height: 550px;
+    border-radius: 10px;
+}
+
+.image-height {
+    height: 200px;
+    border-radius: 10px 10px 0 0;
+}
+
+.ville{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.libelle{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.texte{
+    font-size: 15px;
+}
+
+/*-------------------------------style Responsive------------------------------------------*/
+
+
+@media (max-width: 770px) {
+
+
+    #mapid {
+        display: none;
+    }
+
+    .search-box{
+        width: 230px;
+    }
+
+    .details h1{
+        font-size: 20px;
+    }
+
+    .prix-inputs{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .prix-inputs input {
+        width: 90px;
+        height: 15px;
+        font-size: 10px;
+    }
+
+    .checkbox-case{
+        margin-right: 5px;
+    }
+
+    .checkbox-name{
+        font-size: 10px;
+        text-align: left;
+    }
+
+
+    .card{
+        width: 200px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .image-height {
+        height: 150px;
+    }
+
+    .ville {
+        font-weight: bold;
+        font-size: 10px;
+    }
+
+    .libelle {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    .texte {
+        font-size: 10px;
+    }
+}
