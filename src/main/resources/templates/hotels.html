@@ -15,107 +15,107 @@
 
 <body>
 
-<header th:replace="~{fragments/fragment-header :: header}"></header>
+    <header th:replace="~{fragments/fragment-header :: header}"></header>
 
-<main>
+    <main>
 
-    <div class="research">
-        <fragmentRecherche th:replace="~{fragments/fragment-recherche :: recherche}"></fragmentRecherche>
-    </div>
-
-
-    <div class="box">
-        <div class="search-box">
-            <div id="mapid"></div>
-            <form method="get" class="details" th:action="@{/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}/{prixMax}/{prixMini}}">
-                <h1>Plus de critères ?</h1>
-                <div class="prix-inputs">
-                    <label class="filters-title">Budget</label>
-                    <input type="number" id="prixMin" name="prixMin" placeholder="Minimum">
-                    <span> €  - </span>
-                    <input type="number" id="prixMax" name="prixMax" placeholder="Maximum">
-                    <span> €</span>
-                </div>
-                <label class="filters-title">Type de logement</label>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="hotel" value="type">
-                    <label class="checkbox-name" for="hotel">Hôtel</label>
-                </div>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="logement" value="type">
-                    <label class="checkbox-name" for="logement">Logement entier</label>
-                </div>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="auberge" value="type">
-                    <label class="checkbox-name" for="auberge">Auberge de jeunesse</label>
-                </div>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="autre" value="type">
-                    <label class="checkbox-name" for="autre">Autre</label>
-                </div>
-                <label class="filters-title">Sécurité</label>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="gardiennage" value="gardiennage">
-                    <label class="checkbox-name" for="gardiennage">Gardiennage 24/24</label>
-                </div>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="code" value="code">
-                    <label class="checkbox-name" for="code">Accès sécurisé (badge)</label>
-                </div>
-                <label class="filters-title">Services</label>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="restauration" value="restauration">
-                    <label class="checkbox-name" for="restauration">Restauration</label>
-                </div>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="navette" value="navette">
-                    <label class="checkbox-name" for="navette">Service de navette</label>
-                </div>
-                <label class="filters-title">Équipements</label>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="wifi" name="equipements" value="wifi">
-                    <label class="checkbox-name" for="wifi">WiFi</label>
-                </div>
-                <div class="checkbox-container">
-                    <input class="checkbox-case" type="checkbox" id="tv" name="equipements" value="tv">
-                    <label class="checkbox-name" for="tv">TV</label>
-                </div>
-                <button type="submit" class="filters-button">Go</button>
-            </form>
-
+        <div class="research">
+            <fragmentRecherche th:replace="~{fragments/fragment-recherche :: recherche}"></fragmentRecherche>
         </div>
-        <div class="container">
-            <div class="row">
-                <div th:each="hotel : ${hotel}" class="col-md-4">
-                    <div class="card">
-                        <div class="photo">
-                            <div id="carouselExample" class="carousel slide">
-                                <div class="carousel-inner">
-                                    <div th:each="image, iterStat : ${hotel.images}"
-                                         th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
-                                        <img th:src="${image.url}" class="d-block w-100 image-height" th:alt="${hotel.libelle}">
+
+
+        <div class="box">
+            <div class="search-box">
+                <div id="mapid"></div>
+                <form method="get" class="details" th:action="@{/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}/{prixMax}/{prixMini}}">
+                    <h1>Plus de critères ?</h1>
+                    <div class="prix-inputs">
+                        <label class="filters-title">Budget</label>
+                        <input type="number" id="prixMin" name="prixMin" placeholder="Minimum">
+                        <span> €  - </span>
+                        <input type="number" id="prixMax" name="prixMax" placeholder="Maximum">
+                        <span> €</span>
+                    </div>
+                    <label class="filters-title">Type de logement</label>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="hotel" value="type">
+                        <label class="checkbox-name" for="hotel">Hôtel</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="logement" value="type">
+                        <label class="checkbox-name" for="logement">Logement entier</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="auberge" value="type">
+                        <label class="checkbox-name" for="auberge">Auberge de jeunesse</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="autre" value="type">
+                        <label class="checkbox-name" for="autre">Autre</label>
+                    </div>
+                    <label class="filters-title">Sécurité</label>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="gardiennage" value="gardiennage">
+                        <label class="checkbox-name" for="gardiennage">Gardiennage 24/24</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="code" value="code">
+                        <label class="checkbox-name" for="code">Accès sécurisé (badge)</label>
+                    </div>
+                    <label class="filters-title">Services</label>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="restauration" value="restauration">
+                        <label class="checkbox-name" for="restauration">Restauration</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="navette" value="navette">
+                        <label class="checkbox-name" for="navette">Service de navette</label>
+                    </div>
+                    <label class="filters-title">Équipements</label>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="wifi" name="equipements" value="wifi">
+                        <label class="checkbox-name" for="wifi">WiFi</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input class="checkbox-case" type="checkbox" id="tv" name="equipements" value="tv">
+                        <label class="checkbox-name" for="tv">TV</label>
+                    </div>
+                    <button type="submit" class="filters-button">Go</button>
+                </form>
+
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div th:each="hotel : ${hotel}" class="col-md-4">
+                        <div class="card">
+                            <div class="photo">
+                                <div id="carouselExample" class="carousel slide">
+                                    <div class="carousel-inner">
+                                        <div th:each="image, iterStat : ${hotel.images}"
+                                             th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+                                            <img th:src="${image.url}" class="d-block w-100 image-height" th:alt="${hotel.libelle}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="card-body">
-                            <p class="card-text ville" th:text="${hotel.ville + ', ' + hotel.pays}"></p>
-                            <p class="card-title libelle" th:text="${hotel.libelle}"></p>
-                            <p class="card-text texte" th:text="${hotel.description}"></p>
-                            <button type="button" th:onclick="|window.location.href= '@{/reserver/hotel/{id}(id=${hotel.id})}'|">Réserver</button>
+                            <div class="card-body">
+                                <p class="card-text ville" th:text="${hotel.ville + ', ' + hotel.pays}"></p>
+                                <p class="card-title libelle" th:text="${hotel.libelle}"></p>
+                                <p class="card-text texte" th:text="${hotel.description}"></p>
+                                <button type="button" th:onclick="|window.location.href= '@{/reserver/hotel/{id}(id=${hotel.id})}'|">Réserver</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
-<footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
-</body>
+    </main>
+    <footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
+    </body>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/javascript/hotelsMap.js" ></script>
 

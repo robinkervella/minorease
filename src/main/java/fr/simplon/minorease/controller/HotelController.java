@@ -8,11 +8,15 @@ import fr.simplon.minorease.repositories.HotelRepository;
 import fr.simplon.minorease.services.RechercheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -96,11 +100,13 @@ public class HotelController {
         return "hotels";
     }
 
-    @GetMapping(path = "reserver/hotel/{id}")
-    public String afficherHotelParSonId(@PathVariable Long id, Model model) {
+    @GetMapping(path ="/reserver/hotel/{id}")
+    public String afficherHotelParSonId(@PathVariable Long id,Model model){
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
         Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
+        List<Integer> typesDeChambre = rechercheService.renvoyerTypeChambre(hotel.getChambres());
         model.addAttribute("hotel", hotel);
+        model.addAttribute("typeChambres",typesDeChambre);
         return "ficheHotel";
     }
 
@@ -116,4 +122,10 @@ public class HotelController {
         return "recapitulatif";
     }
 
+
+    @GetMapping("/geolocalisationHotels")
+    public List<Hotel> getAllHotelsAPIGeolocalisation() {
+        List<Hotel> hotels = hotelRepository.findAll();
+        return hotels;
+    }
 }

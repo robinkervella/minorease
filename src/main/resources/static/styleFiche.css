@@ -1,0 +1,71 @@
+body{
+    background-color: white;
+}
+
+.description{
+    display: flex;
+    margin-top: 50px;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    height: 800px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px){
+    .card {
+        height: auto;
+    }
+}
+
+.card.info {
+    height: auto;
+    width: 1100px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    padding: 20px;
+    max-width: 300px;
+    max-height: 200px;
+}
+
+h5 {
+    margin: 20px;
+}
+
+.container.top {
+    margin-top: 150px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn {
+    margin: 40px;
+    width: auto;
+    background-color: #92e3a9;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.retour {
+    display: flex;
+}
