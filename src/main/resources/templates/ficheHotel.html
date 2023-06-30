@@ -16,7 +16,7 @@
 
         <div class="retour">
             <button type="button" class="btn"
-                    th:href="@{/Hotel/{ville}/{dateDebut}/{dateFin}/{nbPersonne}/{prixMax}/{prixMini}}">Retour
+                    th:href="@{/Hotel/{ville}/{nbPersonne}/{prixMax}/{prixMini}}">Retour
             </button>
         </div>
 
@@ -36,7 +36,7 @@
                 <div class="card">
                     <div class="container">
                         <div th:each="typeChambre : ${typeChambres}">
-                            //<h5 th:number="${'Chambre : ' + valueOf }"> </h5>
+                            <h5 th:number="'Nombre de lit : ' + ${typeChambre}"></h5>
                             <div class="image-container d-flex flex-wrap justify-content-center">
                                 <img src="/hotel.jpg" alt="hotelimg" class="img-fluid">
                                 <img src="/hotel.jpg" alt="hotelimg" class="img-fluid">
@@ -45,7 +45,6 @@
                                 <button type="button" onclick="decreaseQuantity('quantityInput')">-</button>
                                 <input style="width: 30px;" type="number" value="0" name="quantity" id="quantityInput">
                                 <button type="button" onclick="increaseQuantity('quantityInput')">+</button>
-                                <div th:with="valueOf=${valueOf+1}"></div>
                             </div>
                         </div>
                     </div>
