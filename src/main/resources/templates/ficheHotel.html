@@ -12,19 +12,18 @@
 <header th:replace="~{fragments/fragment-header :: header}"></header>
 
 <main>
+
+    <div class="retour">
+        <a type="button" class="btn"
+           th:href="@{'/reserver/hotel/' + ${hotel.id} + '/' + ${dateDebut} + '/' + ${dateFin}}">Retour
+        </a>
+    </div>
+
     <div class="container top">
-
-        <div class="retour">
-            <button type="button" class="btn"
-                    th:href="@{/Hotel/{ville}/{nbPersonne}/{prixMax}/{prixMini}}">Retour
-            </button>
-        </div>
-
-
         <div class="row justify-content-lg-center">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <div class="card">
-                    <img src="/hotel.jpg" class="card-img-top" alt="hotel" style="max-width: 100%; height: auto;">
+                    <img th:each="image, iterStat : ${hotel.images}" class="img-fluid card-img-top" alt="hotel">
                     <div class="card-body">
                         <h5 th:text="${hotel.libelle}" class="card-title"></h5>
                         <div class="description" th:text="${hotel.description}"></div>
@@ -32,42 +31,60 @@
                 </div>
             </div>
 
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="card">
-                    <div class="container">
-                        <div th:each="typeChambre : ${typeChambres}">
-                            <h5 th:number="'Nombre de lit : ' + ${typeChambre}"></h5>
+                    <h4>Choisissez votre chambre</h4>
+                    <div class="row">
+                        <div class="col-lg-4 chambre" th:if="${typeChambres.contains(1)}">
                             <div class="image-container d-flex flex-wrap justify-content-center">
-                                <img src="/hotel.jpg" alt="hotelimg" class="img-fluid">
-                                <img src="/hotel.jpg" alt="hotelimg" class="img-fluid">
+                                <img src="/litsimple.png" alt="hotelimg" class="img-fluid">
                             </div>
-                            <div class="quantity">
-                                <button type="button" onclick="decreaseQuantity('quantityInput')">-</button>
-                                <input style="width: 30px;" type="number" value="0" name="quantity" id="quantityInput">
-                                <button type="button" onclick="increaseQuantity('quantityInput')">+</button>
-                            </div>
-                            <a class="btn" th:href="@{'reserver/hotel/' + ${hotel.id} + '/' + ${typeChambre} + '/' + ${dateDebut} + '/' + ${dateFin} + '/recap'}">
-                                Réserver
+                            <p>Reservez un lit simple dans notre hôtel. Chambre pour une personne.</p>
+                            <a th:href="@{reserver/hotel/{id}/recap(id=${hotel.id})}">
+                                <button type="submit" class="btn">
+                                    Réserver
+                                </button>
                             </a>
-
+                        </div>
+                        <div class="col-lg-4 chambre" th:if="${typeChambres.contains(2)}">
+                            <div class="image-container d-flex flex-wrap justify-content-center">
+                                <img src="/litdouble.png" alt="hotelimg" class="img-fluid">
+                            </div>
+                            <p>Reservez un lit double dans notre hôtel. Idéal pour un couple.</p>
+                            <a th:href="@{reserver/hotel/{id}/recap(id=${hotel.id})}">
+                                <button type="submit" class="btn">
+                                    Réserver
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 chambre" th:if="${typeChambres.contains(3)}">
+                            <div class="image-container d-flex flex-wrap justify-content-center">
+                                <img src="/littriple.png" alt="hotelimg" class="img-fluid">
+                            </div>
+                            <p>Reservez une chambre avec 3 lits dans notre hôtel. Idéal pour un couple avec un
+                                enfant.</p>
+                            <a th:href="@{reserver/hotel/{id}/recap(id=${hotel.id})}">
+                                <button type="submit" class="btn">
+                                    Réserver
+                                </button>
+                            </a>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-
 
     <div class="card info" th:object="${hotel}">
+
         <h5>Les informations de l'hôtel</h5>
+        <span>Adresse</span>
         <div class="adresse" th:text="${hotel.adresse}"></div>
         <div class="codepostal" th:text="${hotel.code_postal}"></div>
         <div class="ville" th:text="${hotel.ville}"></div>
+        <span>Site web</span>
         <div class="url" th:text="${hotel.url}"></div>
+        <span>Moyenne</span>
         <div class="moyenne" th:text="${hotel.moyenne}"></div>
     </div>
 
@@ -78,20 +95,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-<script>
-    function increaseQuantity(inputId) {
-        var inputElement = document.getElementById(inputId);
-        var currentValue = parseInt(inputElement.value);
-        inputElement.value = currentValue + 1;
-    }
-
-    function decreaseQuantity(inputId) {
-        var inputElement = document.getElementById(inputId);
-        var currentValue = parseInt(inputElement.value);
-        if (currentValue > 0) {
-            inputElement.value = currentValue - 1;
-        }
-    }
-</script>
 </body>
 </html>
