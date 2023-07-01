@@ -1,0 +1,24 @@
+.custom-block {
+    min-height: 200px;
+}
+
+.image-height-reservation{
+    max-height: 300px;
+}
+
+.reservation_container {
+    margin-top: 100px;
+}
+
+.reservation-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+footer {
+    background-color: #92e3a9;
+}
+
+.btn {
+    background-color: #92e3a9;
+}

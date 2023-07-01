@@ -94,20 +94,10 @@ il devra renseigner ces informations ainsi que celle du mineur
 
 ------
 
-![AddArticleOk](https://zupimages.net/up/23/24/q6r8.png)
+
 
 -----
 
-**3. Modifier / Supprimer un article**
-
-Seul l'administrateur a les droits de modifier ou de supprimer un article.
-Lorsqu'il clique sur 'Modifier', un formulaire reprenant le contenu de l'article en question s'affiche et il peut effectuer les modifications avant d'appuyer sur 'Enregistrer
-
-![UpdateArticle](https://zupimages.net/up/23/24/x2fo.png)
-
-S'il clique sur 'Supprimer', un message de confirmation apparaîtra avant la suppression définitive de l'article.
-
-![DeleteArticle](https://zupimages.net/up/23/24/kbyu.png)
 
 ------
 
@@ -115,8 +105,7 @@ S'il clique sur 'Supprimer', un message de confirmation apparaîtra avant la sup
 
 **1. Créer une base de données MySQL**
 
-Dans ce projet, la base de données 'blog_wow' doit être créée avant de lancer l'application.
-Cependant, les tables 'article', 'authorities', 'commentaire' et 'users' n'ont pas besoin d'être créées au préalable, car elles seront générées automatiquement à partir du code.
+Dans ce projet, la base de données 'minorease' doit être créée avant de lancer l'application.
 
 **2. Cloner le repository**
 
@@ -142,22 +131,14 @@ Pour modifier le port du serveur (par défaut 8080), vous devez modifier le mêm
 server.port=8081
 ```
 
-### API
-
-Par défaut l'API est documentée sur l'URL `http://localhost:8081/swagger-ui.html`.
-
-![Swagger](https://zupimages.net/up/23/24/ksmo.png)
-
-- Les services RESTFul (CRUD) pour les articles sont disponibles sur l'URL
-  `/api/articles`.
 
 ### Tests unitaires
 
-Un test unitaire a été réalisé sur la méthode articles() de notre classe ArticleController.
-Nous utilisons Mockito et JUnit pour ce test.
-Nous créons deux objets Article de test avec des valeurs fictives.
-Ces objets sont ensuite ajoutés à une liste fictive articles.
-Le comportement du mock mRepository est défini pour renvoyer la liste articles lorsque la méthode findAll() est appelée.
-Nous appelons la méthode articles() de notre ArticleController pour obtenir le résultat, puis nous vérifions la taille de la liste, l'ID, le titre, la description, etc. de chaque article.
+Dans ce test unitaire, nous évaluons la classe RatingService. 
+Nous utilisons les frameworks Mockito et JUnit pour réaliser le test. 
+Voici un résumé des différents cas de test couverts :
 
-Cela nous permet de vérifier si la méthode articles() renvoie bien la liste d'articles attendue en utilisant le mock mRepository.
+- Test de la méthode laisserCommentaire() avec un commentaire vide : 
+Nous créons un objet Parent, un objet Hotel et un commentaire vide. 
+Nous nous attendons à ce qu'une exception de type IllegalArgumentException soit lancée lors de l'appel à la méthode ratingService.laisserCommentaire(). 
+Nous vérifions également qu'aucune interaction n'a eu lieu avec le ratingRepository.

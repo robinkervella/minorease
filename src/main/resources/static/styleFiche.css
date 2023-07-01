@@ -7,6 +7,14 @@ body{
     margin-top: 50px;
 }
 
+footer {
+    background-color: #92e3a9;
+}
+
+.btn {
+    color: #92e3a9;
+}
+
 .image-container {
     display: flex;
     justify-content: center;
