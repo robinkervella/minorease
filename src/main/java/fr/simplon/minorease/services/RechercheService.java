@@ -202,13 +202,13 @@ public class RechercheService {
         }
         return listeARetourner;
  }
- public Chambre chambreTrieesParNbPersonne(List<Chambre>allChambre,int nbPersonne,LocalDateTime dateDebut,LocalDateTime dateFin){
-        Chambre ChambreeARetourner = new Chambre();
-        for (Chambre chambre : allChambre){
-            if (estDisponible(chambre.getReservation(),dateDebut,dateFin)){
+    public Chambre getChambreByTypeChambre(List<Chambre> allChambres,int typeChambre){
+        for (Chambre chambre : allChambres){
+            if (chambre.getNombre_lit() == typeChambre){
                 return chambre;
             }
         }
         return null;
  }
+
 }

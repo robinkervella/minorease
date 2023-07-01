@@ -26,9 +26,11 @@
                     <h2>Hôtel :</h2>
                     <div>
                         <h3>Hôtel :</h3>
-                        <img th:src="@{image.url}">
-                        <p>Libellé : <span th:text="${hotel.libelle}"></span></p>
-                        <p>Description : <span th:text="${hotel.description}"></span></p>
+                        <div th:each="image, iterStat : ${hotel.images}"
+                             th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+                            <img th:src="${image.url}" class="d-block w-100 image-height">
+                        </div>
+                            <p>Description : <span th:text="${hotel.description}"></span></p>
                         <p>Adresse : <span th:text="${hotel.adresse}"></span></p>
                         <p>Ville : <span th:text="${hotel.ville}"></span></p>
                     </div>
