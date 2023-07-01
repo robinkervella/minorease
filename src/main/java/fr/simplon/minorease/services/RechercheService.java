@@ -192,9 +192,10 @@ public class RechercheService {
         return false;
     }
 
- public List<Integer> renvoyerTypeChambre(List<Chambre> allChambres){
+ public List<Integer> renvoyerTypeChambre(List<Chambre> allChambres,LocalDateTime dateDebut,LocalDateTime dateFin){
         List<Integer> listeARetourner = new ArrayList<>();
         for (Chambre chambre : allChambres){
+            if(estDisponible(chambre.getReservation(),dateDebut,dateFin))
             if (!listeARetourner.contains(chambre.getNombre_lit())){
                 listeARetourner.add(chambre.getNombre_lit());
             }
