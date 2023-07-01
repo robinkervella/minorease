@@ -138,15 +138,23 @@ public class HotelController {
     }
 
 
-    @GetMapping(path = "reserver/hotel/{id}/recap")
-    public String afficherRecapReservation(@PathVariable Long id, Model model) {
+    @GetMapping(path = "reserver/hotel/{id}/{typeChambre}/{dateDebut}/{dateFin}/recap")
+    public String afficherRecapReservation(
+            @PathVariable Long id,
+            @PathVariable int typeChambre,
+            @PathVariable("dateDebut") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateDebut,
+            @PathVariable("dateFin") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateFin,
+            Model model) {
         Optional<Hotel> optionalHotel = hotelRepository.findById(id);
         Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
-        List<Chambre> allChambres = chambreRepository.findAll();
         Image image = hotel.getImages().get(1);
-        model.addAttribute("chambres", allChambres);
+        List<Chambre> allChambre = hotel.getChambres();
+        LocalDateTime localDateTimeDebut = LocalDateTime.of(dateDebut, LocalTime.MIDNIGHT);
+        LocalDateTime localDateTimeFin = LocalDateTime.of(dateFin, LocalTime.MIDNIGHT);
+        Chambre chambreARetourner = rechercheService.chambreTrieesParNbPersonne(allChambre,typeChambre,localDateTimeDebut,localDateTimeFin);
+        model.addAttribute("chambre", chambreARetourner);
         model.addAttribute("hotel", hotel);
-        model.addAttribute("image", image);
+        model.addAttribute("image",image);
         return "recapitulatif";
     }
 

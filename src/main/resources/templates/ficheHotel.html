@@ -46,14 +46,14 @@
                                 <input style="width: 30px;" type="number" value="0" name="quantity" id="quantityInput">
                                 <button type="button" onclick="increaseQuantity('quantityInput')">+</button>
                             </div>
+                            <a class="btn" th:href="@{'reserver/hotel/' + ${hotel.id} + '/' + ${typeChambre} + '/' + ${dateDebut} + '/' + ${dateFin} + '/recap'}">
+                                Réserver
+                            </a>
+
                         </div>
                     </div>
 
-                    <a>
-                        <button th:href="@{reserver/hotel/{id}/recap(id=${hotel.id})}" type="submit" class="btn">
-                            Réserver
-                        </button>
-                    </a>
+
                 </div>
             </div>
         </div>
