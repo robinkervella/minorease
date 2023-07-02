@@ -71,19 +71,19 @@
                 <h2 class="mb-4">Information du mineur</h2>
                 <form>
                     <div class="form-group mb-3">
-                        <label for="prenom-mineur">Prénom (du mineur) :</label>
+                        <label for="prenom-mineur">Prénom :</label>
                         <input type="text" id="prenom-mineur" name="prenom-mineur" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="nom-mineur">Nom (du mineur) :</label>
+                        <label for="nom-mineur">Nom :</label>
                         <input type="text" id="nom-mineur" name="nom-mineur" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="telephone-mineur">Numéro de téléphone (du mineur) :</label>
+                        <label for="telephone-mineur">Numéro de téléphone :</label>
                         <input type="tel" id="telephone-mineur" name="telephone-mineur" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="adresse-mail_M">Adresse mail (mineur) :</label>
+                        <label for="adresse-mail_M">Adresse mail :</label>
                         <input type="email" id="adresse-mail_M" name="adresse-mail" class="form-control" required>
                     </div>
                 </form>
@@ -94,11 +94,11 @@
                 <h2 class="mb-4">Information du représentant légal</h2>
                 <form>
                     <div class="form-group mb-3">
-                        <label for="adresse-mail_R">Adresse mail (représentant légal) :</label>
+                        <label for="adresse-mail_R">Adresse mail :</label>
                         <input type="email" id="adresse-mail_R" name="adresse-mail" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="telephone-parents">Numéro de téléphone (du représentant légal) :</label>
+                        <label for="telephone-parents">Numéro de téléphone :</label>
                         <input type="tel" id="telephone-parents" name="telephone-parents" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
@@ -109,8 +109,27 @@
                         <label for="adresse">Adresse :</label>
                         <input type="text" id="adresse" name="adresse" class="form-control" required>
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="document-identite">Carte nationale d’identité ou passeport (PDF) :</label>
+                        <input type="file" id="document-identite" name="document-identite" accept=".pdf" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="livret-famille">Livret de famille ou jugement de tutelle (PDF) :</label>
+                        <input type="file" id="livret-famille" name="livret-famille" accept=".pdf" required>
+                    </div>
                 </form>
             </div>
+        </div>
+    </div>
+    <div class="représentant-doc mt-4">
+        <div class="card shadow p-4">
+            <h2 class="mb-4">Représentant légal</h2>
+            <p>Je soussigné(e) Monsieur ou Madame <input type="text" id="nom-representant" placeholder="prénom et nom">
+                représentant légal du mineur <input type="text" id="nom_mineur" placeholder="prénom et nom"> agissant en
+                ma qualité de <input type="text" id="qualite" placeholder="représentant légal">
+                autorise ce(tte) dernier(ère) à séjourner seul(e) dans votre hôtel pour la période
+                du <input type="text" id="date-debut" placeholder="jj/mm/aaaa">
+                au <input type="text" id="date-fin" placeholder="jj/mm/aaaa">.</p>
         </div>
     </div>
 
@@ -122,16 +141,19 @@
                 <form>
                     <div class="mb-3">
                         <label for="card-number" class="form-label">Numéro de carte :</label>
-                        <input type="text" id="card-number" name="card-number" class="form-control" placeholder="1234 5678 9012 3456" required>
+                        <input type="text" id="card-number" name="card-number" class="form-control"
+                               placeholder="1234 5678 9012 3456" required>
                     </div>
                     <div class="mb-3">
                         <label for="card-holder" class="form-label">Titulaire de la carte :</label>
-                        <input type="text" id="card-holder" name="card-holder" class="form-control" placeholder="Nom du titulaire" required>
+                        <input type="text" id="card-holder" name="card-holder" class="form-control"
+                               placeholder="Nom du titulaire" required>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="expiry-date" class="form-label">Date d'expiration :</label>
-                            <input type="text" id="expiry-date" name="expiry-date" class="form-control" placeholder="MM/AA" required>
+                            <input type="text" id="expiry-date" name="expiry-date" class="form-control"
+                                   placeholder="MM/AA" required>
                         </div>
                         <div class="col-md-6">
                             <label for="cvv" class="form-label">CVV :</label>
