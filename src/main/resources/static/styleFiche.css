@@ -48,11 +48,33 @@ body{
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    .card.info {
+        width: auto;
+        margin: 15px;
+        box-shadow: none;
+    }
+}
+
 img {
     padding: 10px;
     max-width: 300px;
     max-height: 100px;
 }
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
 
 
 h4 {
@@ -66,6 +88,20 @@ h4 {
     align-items: center;
 }
 
+.bouton-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .bouton-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+}
+
 .btn {
     margin: 40px;
     width: auto;
@@ -76,18 +112,35 @@ h4 {
     padding: 10px;
 }
 
+.btn.partage {
+    border: none;
+    background: transparent;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn.partage:hover {
+    background: #92e3a9;
+}
+
+.logo {
+    max-width: 60px;
+}
+
 .retour {
     margin-top: 90px;
     margin-left: 30px;
     display: flex;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
     .retour {
-        margin-top: auto;
-        margin-left: auto;
+        flex-direction: column;
     }
+
 }
+
 
 span {
     text-decoration: underline;

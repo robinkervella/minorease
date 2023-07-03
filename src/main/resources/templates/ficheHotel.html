@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
+
     <title th:text="${hotel.libelle}">Hôtel</title>
 </head>
 <body>
@@ -15,21 +16,39 @@
 
     <div class="retour">
         <a type="button" class="btn"
-           th:href="@{'/reserver/hotel/' + ${hotel.id} + '/' + ${dateDebut} + '/' + ${dateFin}}">Retour
+           onclick="javascript:history.back()">Retour
         </a>
+
+
+        <div class="col-lg-9 bouton-container">
+            <a class="btn partage"
+               th:href="'https://api.whatsapp.com/send?text=Voici le contenu que je veux partager'">
+                Partager sur <img src="/whatsapp.png" alt="Logo" class="logo">
+            </a>
+
+            <a class="btn partage"
+               th:href="'https://mail.google.com/mail/?view=cm&su=Mon%20sujet&body=Voici%20le%20contenu%20que%20je%20veux%20partager'">
+                Partager sur <img src="/Gmail.png" alt="Logo" class="logo">
+            </a>
+        </div>
+
     </div>
+
 
     <div class="container top">
         <div class="row justify-content-lg-center">
             <div class="col-lg-3">
                 <div class="card">
-                    <div th:each="image, iterStat : ${hotel.images}"
-                         th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
-                        <img th:src="${image.url}" class="d-block w-100 image-height" th:alt="${hotel.libelle}">
-                        <div class="card-body">
-                            <h5 th:text="${hotel.libelle}" class="card-title"></h5>
-                            <div class="description" th:text="${hotel.description}"></div>
+                    <div th:each="image : ${hotel.images}">
+                        <div class="img-container">
+                            <img class="img-fluid card-img-top" th:src="${image.url}" alt="hotel"/>
                         </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <h5 th:text="${hotel.libelle}" class="card-title"></h5>
+                        <div class="description" th:text="${hotel.description}"></div>
                     </div>
                 </div>
             </div>
@@ -43,6 +62,11 @@
                                 <img src="/litsimple.png" alt="hotelimg" class="img-fluid">
                             </div>
                             <p>Reservez un lit simple dans notre hôtel. Chambre pour une personne.</p>
+
+                            <p>Prix : <span th:if="${hotel.chambres[__${typeChambres.indexOf(1)}__] != null}"
+                                            th:text="${hotel.chambres[__${typeChambres.indexOf(1)}__].prix}"></span>€
+                            </p>
+
                             <a th:href="@{'/reserver/hotel/' + ${hotel.id} + '/1/' + ${dateDebut} + '/' + ${dateFin}+ '/recap'}">
                                 <button type="submit" class="btn">
                                     Réserver
@@ -54,6 +78,12 @@
                                 <img src="/litdouble.png" alt="hotelimg" class="img-fluid">
                             </div>
                             <p>Reservez un lit double dans notre hôtel. Idéal pour un couple.</p>
+
+                            <p>Prix : <span th:if="${hotel.chambres[__${typeChambres.indexOf(2)}__] != null}"
+                                            th:text="${hotel.chambres[__${typeChambres.indexOf(2)}__].prix}"></span>€
+                            </p>
+
+
                             <a th:href="@{'/reserver/hotel/' + ${hotel.id} + '/2/' + ${dateDebut} + '/' + ${dateFin}+ '/recap'}">
                                 <button type="submit" class="btn">
                                     Réserver
@@ -66,6 +96,12 @@
                             </div>
                             <p>Reservez une chambre avec 3 lits dans notre hôtel. Idéal pour un couple avec un
                                 enfant.</p>
+
+                            <p>Prix : <span th:if="${hotel.chambres[__${typeChambres.indexOf(3)}__] != null}"
+                                            th:text="${hotel.chambres[__${typeChambres.indexOf(3)}__].prix}"></span>€
+                            </p>
+
+
                             <a th:href="@{'/reserver/hotel/' + ${hotel.id} + '/3/' + ${dateDebut} + '/' + ${dateFin}+ '/recap'}">
                                 <button type="submit" class="btn">
                                     Réserver
@@ -89,6 +125,46 @@
         <div class="url" th:text="${hotel.url}"></div>
         <span>Moyenne</span>
         <div class="moyenne" th:text="${hotel.moyenne}"></div>
+    </div>
+
+    <!--Ajout map-->
+    <div id="carte">
+        <style>
+            #map {
+                margin-top: 50px;
+                margin-bottom: 50px;
+                margin-left: auto;
+                margin-right: auto;
+                width: 1070px;
+                height: 400px;
+            }
+        </style>
+        <!-- Ajout de Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+        <!-- Création de la div pour afficher la carte -->
+        <div id="map" style="height: 400px;"></div>
+
+        <!-- Ajout de Leaflet JavaScript -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+        <!-- Code JavaScript pour initialiser la carte -->
+        <script>
+            // Coordonnées de l'hôtel
+            var hotelLocation = [48.8566, 2.3522]; // Remplacez ces coordonnées par celles de votre hôtel
+
+            // Création de la carte
+            var map = L.map('map').setView(hotelLocation, 15); // 15 est le niveau de zoom initial
+
+            // Ajout du fond de carte (tuiles)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                maxZoom: 18
+            }).addTo(map);
+
+            // Ajout du marqueur pour l'hôtel
+            L.marker(hotelLocation).addTo(map).bindPopup('Votre hôtel se situe ici').openPopup();
+        </script>
     </div>
 
 
