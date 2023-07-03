@@ -23,6 +23,6 @@ public class ReservationController {
     public String getAllReservations(Model model) {
         List<Reservation> reservations = reservationService.getAllReservations();
         model.addAttribute("reservations", reservations);
-        return "reservations"; // Assurez-vous que "reservations" correspond à la vue (template) appropriée pour afficher les réservations
+        return "reservations";
     }
 }
