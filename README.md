@@ -53,16 +53,16 @@ utilisés [ici](/HELP.md)).
 ![Utilisateur](https://zupimages.net/up/23/26/w90d.png)
 
 On retrouve ici le parcours utilisateur (dans le cas de notre projet, celui du représentant légal).
-Le parent doit pouvoir réserver un hôtel pour un mineur,
 
 
-## Fonctionnalités
+
+## Guide d'utilisation
 
 **1. Page d'accueil**
 
 Notre site affiche sur la page d'accueil une barre de recherche permettant aux utilisateurs de saisir la ville, 
 les dates d'arrivée et de départ, ainsi que le nombre de voyageurs pour leurs séjours à l'hôtel.
-Un peu plus bas sur la même page, vous trouverez les objectifs de Minorease ainsi que les valeurs qu'ils défendent.
+Un peu plus bas sur la même page, vous trouverez les objectifs de Minorease ainsi que les valeurs qui les représentent.
 
 ![Accueil](https://zupimages.net/up/23/26/n52t.png)
 
@@ -73,7 +73,7 @@ Un peu plus bas sur la même page, vous trouverez les objectifs de Minorease ain
 ![PageHôtels](https://zupimages.net/up/23/26/3u6b.png)
 
 Sur cette page, vous trouverez les hôtels disponibles dans la ville sélectionnée pendant la période de temps choisie.
-En cliquant sur "Go", on se retrouve sur la page des choix de chambres.
+En cliquant sur "Go", on est redirigé vers la page des choix de chambres.
 
 
 -----
@@ -112,6 +112,7 @@ Dans ce projet, la base de données 'minorease' doit être créée avant de lanc
 Vous pouvez consulter la documentation correspondante en cliquant sur le lien suivant :
 https://docs.github.com/fr/repositories/creating-and-managing-repositories/cloning-a-repository.
 Elle contient toutes les informations nécessaires pour cloner le dépôt.
+https://github.com/robinkervella/minorease
 
 **3. Modification de application.properties**
 
@@ -136,7 +137,7 @@ server.port=8081
 
 Dans ce test unitaire, nous évaluons la classe RatingService. 
 Nous utilisons les frameworks Mockito et JUnit pour réaliser le test. 
-Voici un résumé des différents cas de test couverts :
+Voici un résumé de l'un des différents cas de test couverts :
 
 - Test de la méthode laisserCommentaire() avec un commentaire vide : 
 Nous créons un objet Parent, un objet Hotel et un commentaire vide. 

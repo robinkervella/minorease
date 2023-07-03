@@ -22,3 +22,7 @@ footer {
 .btn {
     background-color: #92e3a9;
 }
+
+body {
+    font-family: "DejaVu Sans Light";
+}
