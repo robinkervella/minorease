@@ -34,7 +34,6 @@ Thymeleaf, Validation, Spring Web, Spring Boot Security et Spring Data JPA.
 ![Image](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
 
-
 --------
 
 ## Documentations officielles 
@@ -70,9 +69,10 @@ Un peu plus bas sur la même page, vous trouverez les objectifs de Minorease ain
 
 **2. Page des hôtels par ville et par date sélectionnées**
 
-![PageHôtels](https://zupimages.net/up/23/26/3u6b.png)
+![PageHôtels](https://zupimages.net/up/23/27/p4ip.png)
 
 Sur cette page, vous trouverez les hôtels disponibles dans la ville sélectionnée pendant la période de temps choisie.
+Il est possible d'envoyer sur whatsapp et Gmail le lien de la page.
 En cliquant sur "Go", on est redirigé vers la page des choix de chambres.
 
 
@@ -81,25 +81,45 @@ En cliquant sur "Go", on est redirigé vers la page des choix de chambres.
 **3. Page de l'hôtel et choix du type de couchage**
 
 
-![HôtelLits]()
+![HôtelLits](https://zupimages.net/up/23/27/nwed.png)
 
 Sur cette page, l'utilisateur aura la possibilité de choisir le nombre de lits souhaité. 
 En cliquant sur le bouton "Réserver", il sera redirigé vers la page récapitulative de la réservation.
 ------
 
-![PageRécap]()
+**4. Page de réservation de la chambre**
 
-Sur cette page l'utilisateur va venir finaliser sa réservation, pour cela 
-il devra renseigner ces informations ainsi que celle du mineur 
+
+![PageRécap](https://zupimages.net/up/23/27/tghp.png)
+
+Sur cette page l'utilisateur va venir finaliser sa réservation, pour cela, 
+il devra renseigner ces informations ainsi que celle du mineur,
+importer ces documents et remplir la déclaration sur l'honneur.
+La validation de la réservation sera effective après le paiement.
+
+![PageRécap](https://zupimages.net/up/23/27/tghp.png)
+------
+![PageRécap](https://zupimages.net/up/23/27/ni3c.png)
+------
+![PageRécap](https://zupimages.net/up/23/27/rmec.png)
+
+------
+
+**5. Page de réservation / ou historique des réservations**
+
+Sur cette page, vous trouverez les informations relatives à votre réservation en cours ainsi que vos réservations passées. 
+Un QR code et un code de réservation sont générés, permettant de confirmer la présence de votre enfant à l'hôtel lors de votre arrivée.
+
+![CodeRésa](https://zupimages.net/up/23/27/qzeo.png)
+------
+![CodeRésa](https://zupimages.net/up/23/27/yxki.png)
+------
+![CodeRésa](https://zupimages.net/up/23/27/gr1m.png)
+
 
 ------
 
 
-
------
-
-
-------
 
 ## Prérequis
 
@@ -143,3 +163,12 @@ Voici un résumé de l'un des différents cas de test couverts :
 Nous créons un objet Parent, un objet Hotel et un commentaire vide. 
 Nous nous attendons à ce qu'une exception de type IllegalArgumentException soit lancée lors de l'appel à la méthode ratingService.laisserCommentaire(). 
 Nous vérifions également qu'aucune interaction n'a eu lieu avec le ratingRepository.
+
+
+### Créateurs 
+
+- Andy TOM SING VIEN : andy.tomsingvien@outlook.com
+- Typhaine CLAUDEPIERRE : claudepierreisen@outlook.fr
+- Jonathan MASSOUE : j.massoue@hotmail.fr
+- Robin KERVELLA : robin.kervella@laposte.net
+- Lauriane MAURER : lauriane.richard29@gmail.com

@@ -2,7 +2,11 @@ body{
     background-color: white;
 }
 
-
+.btn {
+    background-color: #92e3a9;
+    border-radius: 4.25rem;
+    color: black;
+}
 
 
 .box{
@@ -93,6 +97,7 @@ body{
     width: 300px;
     height: 550px;
     border-radius: 10px;
+    margin: 20px;
 }
 
 .image-height {

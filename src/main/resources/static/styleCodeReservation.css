@@ -1,0 +1,70 @@
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.photo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+
+.texte {
+    text-align: justify;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.code-reservation {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+.btn-valider {
+    margin-left: 30px;
+    background-color: #92E3A9;
+    color: #ffffff;
+    border-color: #92E3A9;
+}
+
+.btn-valider:hover {
+    background-color: #80d19b;
+    border-color: #80d19b;
+}
+
+.title {
+    color: #92E3A9;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.description {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    margin-top: 150px !important; /* Ajustez cette valeur en fonction de la hauteur de votre navbar */
+}
+
+.row {
+    align-items: center
+}
+
+.card {
+    padding: 20px;
+    margin: 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
