@@ -132,9 +132,8 @@ public class RechercheService {
      */
     public List<Hotel> trouverHotelParVille(List<Hotel> allHotel, String ville) {
         List<Hotel> hotelsParVille = new ArrayList<>();
-        String villeEnMinuscule = ville.toLowerCase();
         for (Hotel hotel : allHotel) {
-            if (hotel.getVille().equals(villeEnMinuscule)) {
+            if (hotel.getVille().equals(ville)) {
                 hotelsParVille.add(hotel);
             }
         }
@@ -192,13 +191,23 @@ public class RechercheService {
         return false;
     }
 
- public List<Integer> renvoyerTypeChambre(List<Chambre> allChambres){
+ public List<Integer> renvoyerTypeChambre(List<Chambre> allChambres,LocalDateTime dateDebut,LocalDateTime dateFin){
         List<Integer> listeARetourner = new ArrayList<>();
         for (Chambre chambre : allChambres){
+            if(estDisponible(chambre.getReservation(),dateDebut,dateFin))
             if (!listeARetourner.contains(chambre.getNombre_lit())){
                 listeARetourner.add(chambre.getNombre_lit());
             }
         }
         return listeARetourner;
  }
+    public Chambre getChambreByTypeChambre(List<Chambre> allChambres,int typeChambre){
+        for (Chambre chambre : allChambres){
+            if (chambre.getNombre_lit() == typeChambre){
+                return chambre;
+            }
+        }
+        return null;
+ }
+
 }
