@@ -121,7 +121,7 @@ public class HotelController {
         Hotel hotel = optionalHotel.orElseThrow(() -> new NoSuchElementException("Hotel introuvable"));
         List<Integer> typesDeChambre = rechercheService.renvoyerTypeChambre(hotel.getChambres(),localDateTimeDebut,localDateTimeFin);
         Collections.sort(typesDeChambre);
-        Image image = hotel.getImages().get(1);
+        Image image = hotel.getImages().get(0);
         model.addAttribute("hotel", hotel);
         model.addAttribute("image",image);
         model.addAttribute("typeChambres",typesDeChambre);

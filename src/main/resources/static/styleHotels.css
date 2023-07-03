@@ -2,9 +2,7 @@ body{
     background-color: white;
 }
 
-footer {
-    background-color: #92e3a9;
-}
+
 
 
 .box{
@@ -88,6 +86,7 @@ footer {
     border: solid black 2px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
+    display: none;
 }
 
 .card{

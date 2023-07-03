@@ -39,11 +39,9 @@
         <div class="row justify-content-lg-center">
             <div class="col-lg-3">
                 <div class="card">
-                    <div th:each="image : ${hotel.images}">
                         <div class="img-container">
                             <img class="img-fluid card-img-top" th:src="${image.url}" alt="hotel"/>
                         </div>
-                    </div>
 
 
                     <div class="card-body">
@@ -61,7 +59,7 @@
                             <div class="image-container d-flex flex-wrap justify-content-center">
                                 <img src="/litsimple.png" alt="hotelimg" class="img-fluid">
                             </div>
-                            <p>Reservez un lit simple dans notre hôtel. Chambre pour une personne.</p>
+                            <p>Réservez un lit simple dans notre hôtel.</p>
 
                             <p>Prix : <span th:if="${hotel.chambres[__${typeChambres.indexOf(1)}__] != null}"
                                             th:text="${hotel.chambres[__${typeChambres.indexOf(1)}__].prix}"></span>€
@@ -77,7 +75,7 @@
                             <div class="image-container d-flex flex-wrap justify-content-center">
                                 <img src="/litdouble.png" alt="hotelimg" class="img-fluid">
                             </div>
-                            <p>Reservez un lit double dans notre hôtel. Idéal pour un couple.</p>
+                            <p>Réservez un lit double dans notre hôtel.</p>
 
                             <p>Prix : <span th:if="${hotel.chambres[__${typeChambres.indexOf(2)}__] != null}"
                                             th:text="${hotel.chambres[__${typeChambres.indexOf(2)}__].prix}"></span>€
@@ -94,8 +92,7 @@
                             <div class="image-container d-flex flex-wrap justify-content-center">
                                 <img src="/littriple.png" alt="hotelimg" class="img-fluid">
                             </div>
-                            <p>Reservez une chambre avec 3 lits dans notre hôtel. Idéal pour un couple avec un
-                                enfant.</p>
+                            <p>Réservez une chambre avec 3 lits dans notre hôtel.</p>
 
                             <p>Prix : <span th:if="${hotel.chambres[__${typeChambres.indexOf(3)}__] != null}"
                                             th:text="${hotel.chambres[__${typeChambres.indexOf(3)}__].prix}"></span>€
