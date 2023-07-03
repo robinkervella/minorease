@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="/FavIcon.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="/styleRecap.css">
+
 </head>
 
 <body>
@@ -18,46 +19,48 @@
 <header th:replace="~{fragments/fragment-header :: header}" class="mb-4"></header>
 <main class="container mt-4">
     <!-- Bloc des informations de récapitulatif de réservation -->
-    <div class="reservation-info custom-block mb-4">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Récapitulatif de réservation</h2>
-                <div class="col-md-6">
-                    <h2>Hôtel :</h2>
-                    <div>
-                        <h3>Hôtel :</h3>
-                        <div th:each="image, iterStat : ${hotel.images}"
-                             th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
-                            <img th:src="${image.url}" class="d-block w-100 image-height">
+    <div class="row reservation_container">
+        <div class="col-md-6">
+            <div class="reservation-info custom-block mb-4">
+                <div class="hotel-info shadow p-4">
+                    <h2>Récapitulatif de réservation</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel">
+                                <div th:each="image, iterStat : ${hotel.images}"
+                                     th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+                                    <img th:src="${image.url}" class="d-block w-100 image-height-reservation img-fluid">
+                                </div>
+                            </div>
                         </div>
-                            <p>Description : <span th:text="${hotel.description}"></span></p>
-                        <p>Adresse : <span th:text="${hotel.adresse}"></span></p>
-                        <p>Ville : <span th:text="${hotel.ville}"></span></p>
                     </div>
-                </div>
-
-                <div >
-                    <div>
-                        <h3>Chambre :</h3>
-                        <p>Nombre de lits : <span th:text="${chambre.nombre_lit}"></span></p>
-                        <p>Prix : <span th:text="${chambre.prix}"></span></p>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
+                            <div class="hotel-info shadow p-4">
+                                <h3>Hôtel :</h3>
+                                <p>Description : <span th:text="${hotel.description}"></span></p>
+                                <p>Adresse : <span th:text="${hotel.adresse}"></span></p>
+                                <p>Ville : <span th:text="${hotel.ville}"></span></p>
+                                <h3>Chambre :</h3>
+                                <p>Nombre de lits : <span th:text="${chambre.nombre_lit}"></span></p>
+                                <p>Prix : <span th:text="${chambre.prix}"></span></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
-
-
-    <!-- Bloc des options Kidcab -->
-    <div class="kidcab-options mt-4 mb-4">
-        <div class="card shadow p-4">
-            <h2 class="mb-4">Mes options</h2>
-            <div class="kidcab-option">
-                <label for="kidcab-checkbox">Kidcab :</label>
-                <input type="checkbox" id="kidcab-checkbox">
-                <p>Kidcab accompagne les mineurs dans leur besoin de trajet quotidien en semaine,
-                    le week-end, mais aussi lors des vacances scolaires</p>
+        <div class="col-md-6">
+            <div class="kidcab-options mt-4 custom-block">
+                <div class="card shadow p-4 h-100">
+                    <h2 class="mb-4">Mes options</h2>
+                    <div class="kidcab-option">
+                        <label for="kidcab-checkbox">Kidcab :</label>
+                        <input type="checkbox" id="kidcab-checkbox">
+                        <p>Kidcab accompagne les mineurs dans leur besoin de trajet quotidien en semaine,
+                            le week-end, mais aussi lors des vacances scolaires</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -69,40 +72,43 @@
                 <h2 class="mb-4">Information du mineur</h2>
                 <form>
                     <div class="form-group mb-3">
-                        <label for="prenom-mineur">Prénom (du mineur) :</label>
+                        <label for="prenom-mineur">Prénom :</label>
                         <input type="text" id="prenom-mineur" name="prenom-mineur" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="nom-mineur">Nom (du mineur) :</label>
-                        <input type="text" id="nom_mineur" name="nom-mineur" class="form-control" required>
+                        <label for="nom-mineur">Nom :</label>
+                        <input type="text" id="nom-mineur" name="nom-mineur" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="telephone-mineur">Numéro de téléphone (du mineur) :</label>
+                        <label for="telephone-mineur">Numéro de téléphone :</label>
                         <input type="tel" id="telephone-mineur" name="telephone-mineur" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="adresse-mail_M">Adresse mail (mineur) :</label>
+                        <label for="adresse-mail_M">Adresse mail :</label>
                         <input type="email" id="adresse-mail_M" name="adresse-mail" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Valider</button>
                 </form>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="card shadow p-4 h-100">
+            <div class="card shadow p-4">
                 <h2 class="mb-4">Information du représentant légal</h2>
                 <form>
                     <div class="form-group mb-3">
-                        <label for="adresse-mail_R">Adresse mail (représentant légal) :</label>
+                        <label for="adresse-mail_R">Adresse mail :</label>
                         <input type="email" id="adresse-mail_R" name="adresse-mail" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="telephone-parents">Numéro de téléphone (du représentant légal) :</label>
+                        <label for="telephone-parents">Numéro de téléphone :</label>
                         <input type="tel" id="telephone-parents" name="telephone-parents" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
                         <label for="pays">Pays :</label>
                         <input type="text" id="pays" name="pays" class="form-control" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="adresse">Adresse :</label>
+                        <input type="text" id="adresse" name="adresse" class="form-control" required>
                     </div>
                     <div class="form-group mb-3">
                         <label for="document-identite">Carte nationale d’identité ou passeport (PDF) :</label>
@@ -112,60 +118,57 @@
                         <label for="livret-famille">Livret de famille ou jugement de tutelle (PDF) :</label>
                         <input type="file" id="livret-famille" name="livret-famille" accept=".pdf" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Valider</button>
                 </form>
             </div>
         </div>
     </div>
-
     <div class="représentant-doc mt-4">
         <div class="card shadow p-4">
             <h2 class="mb-4">Représentant légal</h2>
-            <p>Je soussigné(e) Monsieur ou Madame <input type="text" id="nom-representant"
-                                                         placeholder="prénom et nom">
-                représentant légal du mineur <input type="text" id="nom-mineur" placeholder="prénom et nom">
-                agissant en ma qualité de <input type="text" id="qualite"
-                                                 placeholder="représentant légal">
-                autorise ce(tte) dernier(ère) à séjourner seul(e) dans votre hôtel pour la période du
-                <input type="text" id="date-debut" placeholder="jj/mm/aaaa"> au
-                <input type="text" id="date-fin" placeholder="jj/mm/aaaa">.</p>
+            <p>Je soussigné(e) Monsieur ou Madame <input type="text" id="nom-representant" placeholder="prénom et nom">
+                représentant légal du mineur <input type="text" id="nom_mineur" placeholder="prénom et nom"> agissant en
+                ma qualité de <input type="text" id="qualite" placeholder="représentant légal">
+                autorise ce(tte) dernier(ère) à séjourner seul(e) dans votre hôtel pour la période
+                du <input type="text" id="date-debut" placeholder="jj/mm/aaaa">
+                au <input type="text" id="date-fin" placeholder="jj/mm/aaaa">.</p>
         </div>
     </div>
 
-
-    <!-- Bloc des informations de paiement -->
-    <div class="payment-info mt-4">
-        <div class="card shadow p-4">
-            <h2 class="mb-4">Information de paiement</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="card-number" class="form-label">Numéro de carte :</label>
-                    <input type="text" id="card-number" name="card-number" class="form-control"
-                           placeholder="1234 5678 9012 3456" required>
-                </div>
-                <div class="mb-3">
-                    <label for="card-holder" class="form-label">Titulaire de la carte :</label>
-                    <input type="text" id="card-holder" name="card-holder" class="form-control"
-                           placeholder="Nom du titulaire" required>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="expiry-date" class="form-label">Date d'expiration :</label>
-                        <input type="text" id="expiry-date" name="expiry-date" class="form-control" placeholder="MM/AA"
-                               required>
+    <!-- Bouton de validation de la réservation -->
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+            <div class="card shadow p-4">
+                <h2 class="mb-4">Information de paiement</h2>
+                <form>
+                    <div class="mb-3">
+                        <label for="card-number" class="form-label">Numéro de carte :</label>
+                        <input type="text" id="card-number" name="card-number" class="form-control"
+                               placeholder="1234 5678 9012 3456" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="cvv" class="form-label">CVV :</label>
-                        <input type="text" id="cvv" name="cvv" class="form-control" placeholder="123" required>
+                    <div class="mb-3">
+                        <label for="card-holder" class="form-label">Titulaire de la carte :</label>
+                        <input type="text" id="card-holder" name="card-holder" class="form-control"
+                               placeholder="Nom du titulaire" required>
                     </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Valider le paiement</button>
-                <a class="btn" th:href="@{/reservation}">Go</a>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="expiry-date" class="form-label">Date d'expiration :</label>
+                            <input type="text" id="expiry-date" name="expiry-date" class="form-control"
+                                   placeholder="MM/AA" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cvv" class="form-label">CVV :</label>
+                            <input type="text" id="cvv" name="cvv" class="form-control" placeholder="123" required>
+                        </div>
+                    </div>
+                </form>
+                <a class="btn btn-primary" th:href="@{/reservation}">Valider la réservation</a>
 
-            </form>
+            </div>
         </div>
     </div>
 </main>
+
 
 <footer th:replace="~{fragments/fragment-footer :: footer}"></footer>
 
