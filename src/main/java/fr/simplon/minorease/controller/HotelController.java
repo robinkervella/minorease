@@ -55,28 +55,26 @@ public class HotelController {
             @RequestParam("dateFin") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateFin,
             @RequestParam("nbPersonne") int nbPersonne,
             @RequestParam("ville") String ville,
-            //@RequestParam(value = "page", defaultValue = "0") int page,
             Model model)
     {
-        int pageSize = 10;
         List<Hotel> allHotels = hotelRepository.findAll();
+        String[] mots = ville.split(" ");
+        StringBuilder resultat = new StringBuilder();
+        String villeARetourner;
+        // Convertir la première lettre de chaque mot en majuscule et le reste en minuscules
+        for (String mot : mots) {
+            String motFormate = mot.substring(0, 1).toUpperCase() + mot.substring(1).toLowerCase();
+            resultat.append(motFormate).append(" ");
+        }
+        villeARetourner = resultat.toString().trim();
         LocalDateTime localDateTimeDebut = LocalDateTime.of(dateDebut, LocalTime.MIDNIGHT);
         LocalDateTime localDateTimeFin = LocalDateTime.of(dateFin, LocalTime.MIDNIGHT);
-        List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels, ville, localDateTimeDebut, localDateTimeFin, nbPersonne);
+        List<Hotel> listeARetourner = rechercheService.rechercheHotel(allHotels, villeARetourner, localDateTimeDebut, localDateTimeFin, nbPersonne);
         model.addAttribute("hotel", listeARetourner);
         model.addAttribute("dateDebut",dateDebut);
         model.addAttribute("dateFin",dateFin);
         model.addAttribute("ville", ville);
         model.addAttribute("nbPersonne",nbPersonne );
-/*
-        int start = page * pageSize;
-        int end = Math.min(start + pageSize, listeARetourner.size());
-        List<Hotel> hotelsPerPage = listeARetourner.subList(start, end)
-        //model.addAttribute("hotel", hotelsPerPage);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", (listeARetourner.size() - 1) / pageSize + 1);
-        */
-
         return "hotels";
     }
 
@@ -215,5 +213,15 @@ public class HotelController {
     public List<Hotel> getAllHotelsAPIGeolocalisation() {
         List<Hotel> hotels = hotelRepository.findAll();
         return hotels;
+    }
+
+    @GetMapping(path = "/reservation")
+    public String afficherReservation(){
+        return "reservation";
+    }
+
+    @GetMapping(path = "/codeMineur")
+    public String afficherCodeMineur(){
+        return "codeMineur";
     }
 }

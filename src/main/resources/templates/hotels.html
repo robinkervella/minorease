@@ -104,9 +104,6 @@
                                 <p class="card-text ville" th:text="${hotel.ville + ', ' + hotel.pays}"></p>
                                 <p class="card-title libelle" th:text="${hotel.libelle}"></p>
                                 <p class="card-text texte" th:text="${hotel.description}"></p>
-                                <label th:text="${hotel.id}"></label>
-                                <label th:text="${dateDebut}"></label>
-                                <label th:text="${dateFin}"></label>
                                 <a class="btn" th:href="@{'/reserver/hotel/' + ${hotel.id} + '/' + ${dateDebut} + '/' + ${dateFin}}">Go</a>
 
                             </div>

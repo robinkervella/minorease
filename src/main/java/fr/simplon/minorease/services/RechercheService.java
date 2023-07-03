@@ -132,9 +132,8 @@ public class RechercheService {
      */
     public List<Hotel> trouverHotelParVille(List<Hotel> allHotel, String ville) {
         List<Hotel> hotelsParVille = new ArrayList<>();
-        String villeEnMinuscule = ville.toLowerCase();
         for (Hotel hotel : allHotel) {
-            if (hotel.getVille().equals(villeEnMinuscule)) {
+            if (hotel.getVille().equals(ville)) {
                 hotelsParVille.add(hotel);
             }
         }

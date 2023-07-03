@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- Nécessaire pour rendre la page responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Récapitulatif réservation</title>
+  <th:block th:replace="~{fragments/fragment-meta :: html-header}"></th:block>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap" rel="stylesheet">
+  <link rel="icon" href="/FavIcon.png">
+  <link rel="shortcut icon" href="/FavIcon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/styleRecap.css">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font: Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: 'Roboto', sans-serif;
+    }
+    .table-hover tbody tr:hover {
+      background-color: #92E3A9;
+    }
+    .title {
+      color: #92E3A9;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .description {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .main-content {
+      padding-top: 70px;  /* Ajustez cette valeur en fonction de la hauteur de votre navbar */
+    }
+    .d-flex {
+      border-right: 1px solid #92E3A9;
+      padding-right: 20px;
+      margin-right: 20px;
+    }
+    .qr-code {
+      max-width: 100%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .qr-text {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .green-btn {
+      background-color: #92E3A9;
+      color: #ffffff;
+      border-color: #92E3A9;
+    }
+    .green-btn:hover {
+      background-color: #80d19b;
+      border-color: #80d19b;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .text-center{
+      background-color: #92E3A9!important;
+    }
+  </style>
+
+</head>
+<body>
+<!-- Header -->
+
+<header th:replace="~{fragments/fragment-header :: header}" class="mb-4"></header>
+<div class="container mt-5 main-content">
+  <h1 class="title">Bienvenue dans votre espace de réservation d'hôtel pour mineurs</h1>
+  <p class="description">Ici, les représentants légaux peuvent consulter les réservations d'hôtel en cours et passées.</p>
+
+  <div class="row">
+    <!-- Bouton pour les réservations en cours -->
+    <div class="col-sm-12 col-md-5">
+      <div class="btn-container">
+        <button class="btn btn-primary green-btn" onclick="toggleReservations('reservationsEnCours')">Cliquez pour voir mes réservations en cours</button>
+      </div>
+      <div id="reservationsEnCours" style="display: none;">
+        <h2>Réservations en cours</h2>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Hôtel</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Date de réservation</th>
+            <th scope="col">Mineur</th>
+            <th scope="col">Représentant légal</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Hôtel X</td>
+            <td>Adresse X</td>
+            <td>Date X</td>
+            <td>Mineur X</td>
+            <td>Monsieur/Madame X</td>
+          </tr>
+          <tr>
+            <td colspan="5"><img class="qr-code" src="qr-code.png" alt="QR Code"></td>
+          </tr>
+          <tr>
+            <td colspan="5" class="text-center">A2B3-C4D5-E6F7-G8H9</td>
+          </tr>
+
+          <tr>
+            <td colspan="5" class="qr-text">Vous devrez montrer ce code ou QR code afin de valider votre identité auprès des différents acteurs du circuit de la réservation.</td>
+          </tr>
+          <!-- Ajoutez d'autres lignes ici pour d'autres réservations -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+
+    <!-- Bouton pour les réservations passées -->
+    <div class="col-sm-12 col-md-5">
+      <div class="btn-container">
+        <button class="btn btn-primary green-btn" onclick="toggleReservations('reservationsPassees')">Cliquez pour voir mes réservations passées</button>
+      </div>
+      <div id="reservationsPassees" style="display: none;">
+        <h2>Réservations passées</h2>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">Hôtel</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Date de réservation</th>
+            <th scope="col">Mineur</th>
+            <th scope="col">Représentant légal</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Hôtel X</td>
+            <td>Adresse X</td>
+            <td>Date X</td>
+            <td>Mineur X</td>
+            <td>Monsieur/Madame X</td>
+          </tr>
+
+          <tr>
+            <td colspan="5"><img class="qr-code" src="qr-code.png" alt="QR Code"></td>
+          </tr>
+          <tr>
+            <td colspan="5" class="text-center">1A2B-3C4D-5E6F-7G8H
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="qr-text">Vous devrez montrer ce code ou QR code afin de valider votre identité auprès des différents acteurs du circuit de la réservation.</td>
+          </tr>
+          <!-- Ajoutez d'autres lignes ici pour d'autres réservations -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+
+<!-- Optionnel JavaScript -->
+<!-- jQuery d'abord, puis Popper.js, puis Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function toggleReservations(elementId) {
+    var element = document.getElementById(elementId);
+    if (element.style.display === "none") {
+      element.style.display = "block";
+    } else {
+      element.style.display = "none";
+    }
+  }
+</script>
+</body>
+</html>
